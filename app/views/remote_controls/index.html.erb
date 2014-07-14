@@ -1,0 +1,17 @@
+<div class="row">
+  <span class="span9">
+    <% if @remote_controls %>
+      <% @remote_controls.each do |remote_control| %>
+        <P><h4><%= remote_control.name %>: <%= link_to "Open", remote_control_open_path(remote_control), class: "btn btn btn-primary" %></h4></P>
+      <% end %>
+    <% end %>
+  </span>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
