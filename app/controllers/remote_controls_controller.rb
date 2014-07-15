@@ -11,7 +11,7 @@ class RemoteControlsController < ApplicationController
   def open
     time = Time.new
     remote_control = RemoteControl.find(params[:id])
-    Gpio.new.trigger(remote_control.gpio, remote_control.name)
+    Gpio.new.switch(remote_control.gpio)
     redirect_to remote_controls_path, flash: { success: "The #{remote_control.name} has been <B>opened</B> at #{time.strftime("%H:%M:%S on %m-%d-%Y")}." }
   end
 
