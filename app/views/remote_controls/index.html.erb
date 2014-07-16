@@ -2,7 +2,7 @@
   <span class="span9">
     <% if @remote_controls %>
       <% @remote_controls.each do |remote_control| %>
-        <P><h4><%= remote_control.name %>: <%= link_to "Open", remote_control_open_path(remote_control), class: "btn btn btn-primary" %></h4></P>
+        <div class="form-inline"><P><h1 class="bigger"><%= remote_control.name %>: <%= button_to "Open", remote_control_open_path(remote_control), method: "get", class: "ok" %></h1 class="bigger"></P></div>
       <% end %>
     <% end %>
   </span>
