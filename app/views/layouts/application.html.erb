@@ -3,13 +3,27 @@
 <head>
   <title>Testing</title>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag :application %>
 </head>
 <body>
-<% flash.each do |key, value| %>
-  <%= content_tag :div, value, class: "flash #{key}" %>
+<div class="row">
+  <span class="12">
+    <% if user_signed_in? %>
+      <%= link_to "Profile", edit_user_registration_path %>
+    <% end %>
+    <% if user_signed_in? %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "Login", new_user_session_path %>
+    <% end %>
+  </span>
+</div>
+<% if flash %>
+  <% flash.each do |key, value| %>
+    <h1 class="flash"><li><%= content_tag :div, value, class: "flash #{key}" %></li></h1>
+  <% end %>
 <% end %>
-
 <%= yield %>
-
 </body>
 </html>
