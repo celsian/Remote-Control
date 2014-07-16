@@ -11,3 +11,44 @@
  *= require_self
  *= require_tree .
  */
+
+h1.bigger { font-size: 150px }
+h1.flash { font-size: 40px }
+
+.button_to,
+.button_to div {
+  display: inline;
+}
+
+input[type=submit].ok
+{
+   border-top: 1px solid #a3a3a3;
+   background: #9c9c9c;
+   background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#9c9c9c));
+   background: -webkit-linear-gradient(top, #f7f7f7, #9c9c9c);
+   background: -moz-linear-gradient(top, #f7f7f7, #9c9c9c);
+   background: -ms-linear-gradient(top, #f7f7f7, #9c9c9c);
+   background: -o-linear-gradient(top, #f7f7f7, #9c9c9c);
+   padding: 9.5px 19px;
+   -webkit-border-radius: 14px;
+   -moz-border-radius: 14px;
+   border-radius: 14px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: #000000;
+   font-size: 120px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+   }
+input[type=submit]:hover {
+   border-top-color: #525152;
+   background: #525152;
+   color: #ccc;
+   }
+input[type=submit]:active {
+   border-top-color: #3b3b3b;
+   background: #3b3b3b;
+   }
