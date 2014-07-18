@@ -2,18 +2,16 @@
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div><%= f.label :email %>
-  <%= f.email_field :email, autofocus: true %></div>
+  <%= f.email_field :email, autofocus: true %></div><br>
   <div><%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "off" %></div>
+    <%= f.password_field :password, autocomplete: "off" %></div><br>
 
   <% if devise_mapping.rememberable? -%>
-    <%= f.label :remember_me, :class => "checkbox" do %>
-      <%= f.check_box :remember_me %><%= f.label :remember_me %>
-    <% end %>
+    <div><%= f.check_box :remember_me %> &nbsp; <%= f.label :remember_me %></div>
   <% end -%>
   <br>
 
   <div><%= f.submit "Sign in", class: "btn btn-primary" %></div>
 <% end %>
-
+<br>
 <%= render "devise/shared/links" %>
