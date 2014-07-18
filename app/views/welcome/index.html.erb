@@ -1,8 +1,6 @@
-<h2>Welcome to the Remote Controls Interface</h2>
-<p><span style="color: #ff0000">You don't currently have remote control access</span>, contact your administrator to obtain access.</p>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<% provide(:title, 'Welcome') %>
+<% provide(:jumbotron, '
+  <h1>Welcome <small>to the Remote Controls Interface</small></h1>
+'.html_safe)%>
+  
+<p><span style="color: #ff0000">You <b>don't</b> currently have remote control access</span>, contact your administrator to obtain access.</p>
