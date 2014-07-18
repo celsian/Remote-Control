@@ -18,3 +18,5 @@
 lib/gpio.rb
 
 config/database.yml
+
+app/views/layouts/application.html.erb.bak
