@@ -1,17 +1,13 @@
-<div class="row">
-  <span class="span9">
-    <% if @remote_controls %>
-      <% @remote_controls.each do |remote_control| %>
-        <div class="form-inline"><P><h1 class="bigger"><%= remote_control.name %>: <%= button_to "Open", remote_control_open_path(remote_control), method: "get", class: "ok" %></h1 class="bigger"></P></div>
-      <% end %>
-    <% end %>
-  </span>
-</div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<% provide(:title, 'Welcome') %>
+<% if @remote_controls %>
+  <% @remote_controls.each do |remote_control| %>
+    <div class="form-inline">
+      <h2>
+        <%= remote_control.name %>:
+        <span class="btn-group">
+          <%= button_to "Open", remote_control_open_path(remote_control), method: "get", class: "btn btn-primary" %>
+        </span>
+      </h2>
+    </div>
+  <% end %>
+<% end %>
