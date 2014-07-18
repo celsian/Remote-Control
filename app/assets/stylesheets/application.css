@@ -9,10 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap.min
  *= require_tree .
  */
 
-h1.bigger { font-size: 150px }
+/*h1.bigger { font-size: 150px }
 h1.flash { font-size: 40px }
 
 .button_to,
@@ -51,4 +52,4 @@ input[type=submit]:hover {
 input[type=submit]:active {
    border-top-color: #3b3b3b;
    background: #3b3b3b;
-   }
+   }*/
