@@ -20,3 +20,13 @@ lib/gpio.rb
 config/database.yml
 
 app/views/layouts/application.html.erb.bak
+
+public/assets/application-6e29685cca484eaf04b41372ced3a8b0.css
+
+public/assets/application-6e29685cca484eaf04b41372ced3a8b0.css.gz
+
+public/assets/application-afb322230443417b558927e95822f563.js
+
+public/assets/application-afb322230443417b558927e95822f563.js.gz
+
+public/assets/manifest-dfa1b104d332ef1e0d265b96546d0816.json
