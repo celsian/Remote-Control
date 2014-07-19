@@ -5,7 +5,11 @@
       <h2>
         <%= remote_control.name %>:
         <span class="btn-group">
-          <%= button_to "Open", remote_control_open_path(remote_control), method: "get", class: "btn btn-primary" %>
+          <% if remote_control.name == "Gate" %>
+            <%= button_to "Open", remote_control_open_path(remote_control), method: "get", class: "btn btn-primary" %>
+          <% else %>
+            <%= button_to "Open", remote_control_open_path(remote_control), method: "get", data: { confirm: "Are you sure you want to open the #{remote_control.name}?" }, class: "btn btn-primary" %>
+          <% end %>
         </span>
       </h2>
     </div>
