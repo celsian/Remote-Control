@@ -81,17 +81,20 @@
         <% end %>
       <% else %>
         <br>
-        <div class="container">
+        <div class="container" style="height: 100%;">
         <%= render "layouts/flash_notices" %>
       <% end %>
 
         <%= yield %>  
 
-        <hr>
-        <div class="footer">
-          <p>&copy; P 2014</p>
+        
         </div>
-      </div>
+        <div class="container">
+          <div class="footer">
+            <hr>
+            <p>&copy; P 2014</p>
+          </div>
+        </div>
  <!-- /container -->
 
     <!-- Javascripts
