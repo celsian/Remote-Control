@@ -56,6 +56,9 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
               <% if user_signed_in? %>
+                <% if current_user.admin %>
+                  <li><%= link_to "Admin", admin_index_path %></font></li>
+                <% end %>
                 <li class="<%= 'active' if current_page?(edit_user_registration_path) %>"><%= link_to "Profile", edit_user_registration_path %></li>
               <% end %>
               <% if user_signed_in? %>
@@ -69,24 +72,21 @@
     </div>
 
 <!--Container typically starts here-->
-      <% if current_page?(root_path) %>
-        <% if content_for?(:jumbotron) %>
-          <div class="jumbotron">
-            <div class="container">
-              <%= render "layouts/flash_notices" %>
-              <%= yield :jumbotron %>
-            </div>
-          </div>
+      <% if content_for?(:jumbotron) %>
+        <div class="jumbotron">
           <div class="container">
-        <% end %>
+            <%= render "layouts/flash_notices" %>
+            <%= yield :jumbotron %>
+          </div>
+        </div>
+        <div class="container">
       <% else %>
         <br>
         <div class="container" style="height: 100%;">
         <%= render "layouts/flash_notices" %>
       <% end %>
 
-        <%= yield %>  
-
+      <%= yield %>
         
         </div>
         <div class="container">
