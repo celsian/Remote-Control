@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Notes</div>
+
+  <!-- Table -->
+  <table class="table">
+      <tr>
+        <th>Date</th><th>Action</th>
+      </tr>
+    <% @notes.each do |note| %>
+      <tr>
+        <td><%= note.created_at.strftime("%H:%M:%S on %m-%d-%Y") %></td><td><%= note.info %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
