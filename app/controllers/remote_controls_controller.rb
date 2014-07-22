@@ -9,13 +9,12 @@ class RemoteControlsController < ApplicationController
   end
 
   def open
-    time = Time.new
     remote_control = RemoteControl.find(params[:id])
     Gpio.new.switch(remote_control.gpio)
 
-    Note.add(current_user, remote_control, time)
+    note = Note.add(current_user, remote_control)
 
-    redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was opened at #{time.strftime("%H:%M:%S on %m-%d-%Y")}." }
+    redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was opened at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." }
   end
 
   private
