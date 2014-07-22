@@ -1,7 +1,9 @@
 class Note < ActiveRecord::Base
-  def self.add(current_user, remote_control, time)
+  default_scope order("id DESC")
+
+  def self.add(current_user, remote_control)
     Note.check_count
-    Note.create(info: "#{current_user.email} opened the #{remote_control.name} at #{time.strftime("%H:%M:%S on %m-%d-%Y")}.")
+    return Note.create(info: "#{current_user.email} opened the #{remote_control.name}")
   end
 
   def self.check_count
