@@ -3,6 +3,9 @@ Rc::Application.routes.draw do
 
   root to: "welcome#index"
   resources :remote_controls
+  resources :admin, only: [:index]
+
+  get "/admin/notes", to: "admin#notes", as: "admin_notes"
   get "/remote_controls/:id/open", to: "remote_controls#open", as: "remote_control_open"
 
   # The priority is based upon order of creation: first created -> highest priority.
