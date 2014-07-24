@@ -53,12 +53,16 @@ class AdminController < ApplicationController
 
   def remove_admin
     user = User.find(params[:id])
-    user.admin = false
-    if user.save
-      redirect_to admin_user_editor_path(q: params[:q]), flash: { success: "#{user.email} is no longer an Administrator." }
+    unless User::PROTECTED_USERS.include?(user.email)
+      user.admin = false
+      if user.save
+        redirect_to admin_user_editor_path(q: params[:q]), flash: { success: "#{user.email} is no longer an Administrator." }
+      else
+        flash[:error] = "Error: There was a problem removing the rights."
+        render :view_editor_admin
+      end
     else
-      flash[:error] = "Error: There was a problem removing the rights."
-      render :view_editor_admin
+      redirect_to admin_user_editor_path(q: params[:q]), flash: { error: "That user's rights cannot be removed." }
     end
   end
 
