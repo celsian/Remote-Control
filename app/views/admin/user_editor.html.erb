@@ -1,0 +1,106 @@
+<h3>Search for Users by E-Mail:</h3>
+<%= form_tag admin_user_editor_path, :method => :get, :class => "form-search" do %>
+  <%= text_field_tag :q, '',size: 30, autofocus: true %>
+  <%= submit_tag "Search", class: 'btn btn-sm btn-primary' %>
+<% end %>
+<br>
+
+<div class="row">
+  <div class="col-md-6">
+    <% if @users.length > 0 %>
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading"><h3 class="panel-title">Add Rights</h3></div>
+
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width=50%>E-Mail</th><th>Controller</th><th>Admin</th>
+          </tr>
+        </thead>
+<% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= user.email %>
+          </td>
+          <td class="c">
+            <% if user.controller %>
+              <%= link_to "Remove Controller", admin_remove_controller_path(user.id, params[:q]), data: { confirm: "Are you sure you want to remove #{user.email} as a Controller?" }, class: "btn btn-sm btn-danger" %>
+            <% else %>
+              <%= link_to "Add Controller", admin_add_controller_path(user.id, params[:q]), data: { confirm: "Are you sure you want to add #{user.email} as a Controller?" }, class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
+          <td class="c">
+            <% if user.admin %>
+              <%= link_to "Remove Admin", admin_remove_admin_path(user.id, params[:q]), data: { confirm: "Are you sure you want to remove #{user.email} as an Administrator?" }, class: "btn btn-sm btn-danger" %>
+            <% else %>
+              <%= link_to "Add Admin", admin_add_admin_path(user.id, params[:q]), data: { confirm: "Are you sure you want to add #{user.email} as an Administrator?" }, class: "btn btn-sm btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <!-- Default panel contents -->
+      <div class="panel-heading"><h3 class="panel-title">Remove Rights</h3></div>
+
+      <!-- Table -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th width=50%>E-Mail</th><th>Admin</th>
+          </tr>
+        </thead>
+        <% @admins.each do |user| %>
+
+          <tr>
+          <td>
+            <%= user.email %>
+          </td>
+          <td class="c">
+            <% if user.controller %>
+              <%= link_to "Remove Controller", admin_remove_controller_path(user.id, params[:q] ||= "^"), data: { confirm: "Are you sure you want to remove #{user.email} as a Controller?" }, class: "btn btn-sm btn-danger" %>
+            <% else %>
+            
+            <% end %>
+          </td>
+          <td class="c">
+            <% if user.admin %>
+              <%= link_to "Remove Admin", admin_remove_admin_path(user.id, params[:q] ||= "^"), data: { confirm: "Are you sure you want to remove #{user.email} as an Administrator?" }, class: "btn btn-sm btn-danger" %>
+            <% else %>
+
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+        <% @controllers.each do |user| %>
+          <tr>
+          <td>
+            <%= user.email %>
+          </td>
+          <td class="c">
+            <% if user.controller %>
+              <%= link_to "Remove Controller", admin_remove_controller_path(user.id, params[:q] = "^"), data: { confirm: "Are you sure you want to remove #{user.email} as a Controller?" }, class: "btn btn-sm btn-danger" %>
+            <% else %>
+            
+            <% end %>
+          </td>
+          <td class="c">
+            <% if user.admin %>
+              <%= link_to "Remove Admin", admin_remove_admin_path(user.id, params[:q] = "^"), data: { confirm: "Are you sure you want to remove #{user.email} as an Administrator?" }, class: "btn btn-sm btn-danger" %>
+            <% else %>
+            
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
