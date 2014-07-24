@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-7">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Remote Controls</h3>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID:</th>
+            <th>GPIO #:</th>
+            <th width=50%>Name:</th>
+            <th>Change State:</th>
+          </tr>
+        </thead>
+        <% @remote_controls.each do |remote_control| %>
+          <tr>
+            <td><%= remote_control.id %></td>
+            <td><%= remote_control.gpio %></td>
+            <td><%= remote_control.name %></td>
+            <td>
+              <% if remote_control.enabled %>
+                <%= link_to "Disable", admin_access_control_disable_path(remote_control), class: "btn btn-sm btn-danger" %>
+              <% else %>
+                <%= link_to "Enable", admin_access_control_enable_path(remote_control), class: "btn btn-sm btn-success" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
