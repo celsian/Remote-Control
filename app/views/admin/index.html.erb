@@ -7,17 +7,17 @@
   <div class="col-md-4">
     <h2>Users</h2>
     <p>Add or remove administrators and controllers here.</p>
-    <p><a class="btn btn-default" href="#" role="button">Edit users &raquo;</a></p>
+    <p><%= link_to "User Editor »", admin_user_editor_path, class: "btn btn-default" %></p>
   </div>
   <div class="col-md-4">
     <h2>Notes</h2>
     <p>The past 100 entries are logged with time and date.</p>
-    <p><%= link_to "View notes »", admin_notes_path, class: "btn btn-default" %></p>
+    <p><%= link_to "View Notes »", admin_notes_path, class: "btn btn-default" %></p>
  </div>
   <div class="col-md-4">
     <h2>Access</h2>
     <p>Enable or disable remote controls.</p>
-    <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+    <p><%= link_to "Access Control »", admin_access_control_path, class: "btn btn-default" %></p>
   </div>
 </div>
 <div class="row">
