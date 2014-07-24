@@ -4,6 +4,12 @@ Rc::Application.routes.draw do
   root to: "welcome#index"
   resources :remote_controls
   resources :admin, only: [:index]
+  
+
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/admin/sidekiq', as: "sidekiq"
+  end
 
   get "/admin/notes", to: "admin#notes", as: "admin_notes"
   get "/remote_controls/:id/open", to: "remote_controls#open", as: "remote_control_open"
