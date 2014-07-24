@@ -15,6 +15,13 @@ gem 'devise'
 #For ruby gpio <--------------
 gem 'pi_piper', '~> 1.3.2'
 
+#Turbo links to stop the loading JS and CSS on every page load.
+gem 'turbolinks'
+
+#Gem for workers:
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
