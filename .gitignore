@@ -46,3 +46,5 @@ public/assets/apple-touch-icon-precomposed-9357077566e6cae90ad530c33baacb7f.png
 public/assets/favicon-ef0bdc1a03adcf5a7e9701f91eef36e3.ico
 
 app/workers/gpio_worker.rb
+
+app/workers/gpio_worker.rb
