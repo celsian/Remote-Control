@@ -1,1 +1,17 @@
-To start Redis (needed for sidekiq): redis-server /usr/local/etc/redis.conf
+To start Redis in local environment (needed for sidekiq): redis-server /usr/local/etc/redis.conf
+(dont actually need config to start)
+Sidekiq: bundle exec sidekiq
+
+#### Commands to start rails server in dev environment upon server startup (rc.local) ####
+#### I am aware this is unorthodox but I will setup capistrano later.
+sudo -u pi -i /usr/bin/screen -dmS server -p 0 -t Rails-Server
+sudo -u pi -i /usr/bin/screen -S server -p 0 -X stuff "cd /home/pi/rails_apps/rc$(printf \\r)"
+sudo -u pi -i /usr/bin/screen -S server -p 0 -X stuff "sudo rails s$(printf \\r)"
+
+sudo -u pi -i /usr/bin/screen -S server -p 0 -X stuff "screen -t Redis-Server$(printf \\r)"
+sudo -u pi -i /usr/bin/screen -S server -p 1 -X stuff "cd /home/pi$(printf \\r)"
+sudo -u pi -i /usr/bin/screen -S server -p 1 -X stuff "sudo redis-server$(printf \\r)"
+
+sudo -u pi -i /usr/bin/screen -S server -p 0 -X stuff "screen -t Sidekiq$(printf \\r)"
+sudo -u pi -i /usr/bin/screen -S server -p 2 -X stuff "cd /home/pi/rails_apps/rc$(printf \\r)"
+sudo -u pi -i /usr/bin/screen -S server -p 2 -X stuff "sudo bundle exec sidekiq$(printf \\r)"
