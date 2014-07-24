@@ -10,7 +10,8 @@ class RemoteControlsController < ApplicationController
 
   def open
     remote_control = RemoteControl.find(params[:id])
-    Gpio.new.switch(remote_control.gpio)
+
+    GpioWorker.perform_async(remote_control.id)
 
     note = Note.add(current_user, remote_control)
 
