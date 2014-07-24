@@ -3,7 +3,7 @@ class Note < ActiveRecord::Base
 
   def self.add(current_user, remote_control)
     Note.check_count
-    return Note.create(info: "#{current_user.email} opened the #{remote_control.name}")
+    return Note.create(info: "#{current_user.email} triggered the #{remote_control.name}")
   end
 
   def self.check_count
