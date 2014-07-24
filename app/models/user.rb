@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   default_scope order("email")
 
+  PROTECTED_USERS = ['celsian@gmail.com']
+
   def self.search query
     query = query.downcase
     where("email LIKE :query", query: "%#{query}%")
