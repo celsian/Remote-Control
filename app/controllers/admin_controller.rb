@@ -7,7 +7,16 @@ class AdminController < ApplicationController
   end
 
   def notes
-    @notes = Note.all
+    if params[:q]
+      @index = params[:q].to_i
+    else
+      @index = 0
+    end
+
+    @notes = Note.all[@index..@index+9]
+    @notes_page_count = (Note.all.count/(10.to_f)).ceil
+    @max_index = @notes_page_count*10-10
+    @time = Time.new
   end
 
   def access_control
