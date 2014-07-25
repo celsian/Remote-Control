@@ -7,7 +7,7 @@ class Note < ActiveRecord::Base
   end
 
   def self.check_count
-    if Note.count > 100
+    if Note.count > 99
       Note.last.destroy
       Note.check_count
     end
