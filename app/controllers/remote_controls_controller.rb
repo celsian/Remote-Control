@@ -2,8 +2,6 @@ class RemoteControlsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_controller
 
-  require 'gpio.rb'
-
   def index
     @remote_controls = RemoteControl.all
   end
@@ -12,11 +10,25 @@ class RemoteControlsController < ApplicationController
     remote_control = RemoteControl.find(params[:id])
 
     if remote_control.enabled
-      GpioWorker.perform_async(remote_control.id)
+      GpioOpenWorker.perform_async(remote_control.id)
 
       note = Note.add(current_user, remote_control)
 
       redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." }
+    else
+      redirect_to remote_controls_path, flash: { error: "The <b>#{remote_control.name}</b> is currently disabled." }
+    end
+  end
+
+  def head_open
+    remote_control = RemoteControl.find(params[:id])
+
+    if remote_control.enabled
+      GpioHeadOpenWorker.perform_async(remote_control.id)
+
+      note = Note.head_add(current_user, remote_control)
+
+      redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered for head level at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." }
     else
       redirect_to remote_controls_path, flash: { error: "The <b>#{remote_control.name}</b> is currently disabled." }
     end
