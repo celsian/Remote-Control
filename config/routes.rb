@@ -4,6 +4,7 @@ Rc::Application.routes.draw do
   root to: "welcome#index"
   resources :remote_controls
   get "/remote_controls/:id/open", to: "remote_controls#open", as: "remote_control_open"
+  get "/remote_controls/:id/head_open", to: "remote_controls#head_open", as: "remote_control_head_open"
   
   resources :admin, only: [:index]
   get "/admin/notes", to: "admin#notes", as: "admin_notes"
@@ -16,14 +17,10 @@ Rc::Application.routes.draw do
   get "/admin/access_control/disable/:id", to: "admin#access_control_disable", as: "admin_access_control_disable"
   get "/admin/access_control/enable/:id", to: "admin#access_control_enable", as: "admin_access_control_enable"
   
-
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/admin/sidekiq', as: "sidekiq"
   end
-
-  
-  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
