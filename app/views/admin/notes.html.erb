@@ -14,7 +14,7 @@
         </td>
         <td width=50% style = {text-align: right;}>
         <h3 class="panel-title pull-right">
-          Current Time: <span id=tick2></span> - <%= @time.strftime("%a, %B %d, %Y") %>
+          Current Time: <%= @time.strftime("%k:%M:%S - %a, %B %d, %Y") %>
         </h3>
         </td>
         </tr>
@@ -31,7 +31,7 @@
         <% if @notes %>
           <% @notes.each do |note| %>
             <tr>
-              <td><%= note.created_at.strftime("%H:%M:%S on %m-%d-%Y") %></td><td><%= note.info %></td>
+              <td><%= note.created_at.strftime("%H:%M:%S - %m-%d-%Y") %></td><td><%= note.info %></td>
             </tr>
           <% end %>
         <% end %>
@@ -46,11 +46,8 @@
       <% end %>
 
       <% 0.upto(@max_index/10) do |page| %>
-      
           <li class=<%= (page*10) == params[:q].to_i ? "active" : "" %>><%= link_to "#{page+1}", admin_notes_path(q: (page*10)) %></a></li>
-
       <% end %>
-
 
       <% if @index == @max_index %>
         <li class="disabled"><a href="">»</a></li>
@@ -60,39 +57,4 @@
     </ul>
   </div>
 </div>
-
-
-<!--- Clock Script --->
-<script>
-<!--
-/*By JavaScript Kit
-http://javascriptkit.com
-Credit MUST stay intact for use
-*/
-function show2(){
-if (!document.all&&!document.getElementById)
-return
-thelement=document.getElementById? document.getElementById("tick2"): document.all.tick2
-var Digital=new Date()
-var hours=Digital.getHours()
-var minutes=Digital.getMinutes()
-var seconds=Digital.getSeconds()
-var dn="PM"
-if (hours<12)
-dn="AM"
-if (hours>12)
-hours=hours-12
-if (hours==0)
-hours=12
-if (minutes<=9)
-minutes="0"+minutes
-if (seconds<=9)
-seconds="0"+seconds
-var ctime=hours+":"+minutes+":"+seconds+" "+dn
-thelement.innerHTML=ctime
-setTimeout("show2()",1000)
-}
-window.onload=show2
-//-->
-</script>
 
