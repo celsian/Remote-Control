@@ -8,10 +8,6 @@ gem "pg"
 
 gem 'devise'
 
-# gem "therubyracer"
-# gem "less-rails" #Sprockets (what Rails 3.1 uses for its asset pipeline) supports LESS
-# gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-
 #For ruby gpio <--------------
 gem 'pi_piper', '~> 1.3.2'
 
@@ -39,7 +35,10 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 group :test, :development do
-
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'guard-rspec'
 end
 
 group :doc do
