@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  default_scope order("email")
+  default_scope { order("email") }
 
   PROTECTED_USERS = ['celsian@gmail.com']
 
