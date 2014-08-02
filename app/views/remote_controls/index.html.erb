@@ -4,18 +4,18 @@
     <span class="btn-group-vertical btn-group-lg">
       <% @remote_controls.each do |remote_control| %>
         <% if remote_control.name == "Gate" %>
-            <%= link_to remote_control.name, remote_control.enabled ? remote_control_open_path(remote_control) : "", class: remote_control.enabled ? "btn btn-success" : "btn btn-default disabled" %>
+            <%= link_to remote_control.name, remote_control.enabled ? remote_control_open_path(remote_control) : "", class: remote_control.enabled ? "btn btn-success" : "btn btn-default disabled", remote: true %>
         <% else %>
-          <%= link_to remote_control.name, remote_control.enabled ? remote_control_open_path(remote_control) : "", data: { confirm: "Are you sure you want to open the #{remote_control.name}?" }, class: remote_control.enabled ? "btn btn-success" : "btn btn-default disabled" %>
+          <%= link_to remote_control.name, remote_control.enabled ? remote_control_open_path(remote_control) : "", data: { confirm: "Are you sure you want to open the #{remote_control.name}?" }, class: remote_control.enabled ? "btn btn-success" : "btn btn-default disabled", remote: true %>
         <% end %>
       <% end %>
     </span>
     <span class="btn-group-vertical btn-group-lg">
       <% @remote_controls.each do |remote_control| %>
         <% unless remote_control.name == "Gate" %>
-          <%= link_to "Head", remote_control.enabled ? remote_control_head_open_path(remote_control) : "", class: remote_control.enabled ? "btn btn-success" : "btn btn-default disabled" %>
+          <%= link_to "Head", remote_control.enabled ? remote_control_head_open_path(remote_control) : "", class: remote_control.enabled ? "btn btn-success" : "btn btn-default disabled", remote: true %>
         <% else %>
-          <%= link_to "N/A", "", class: "btn btn-default disabled" %>
+          <%= link_to "N/A", "", class: "btn btn-default disabled", remote: true %>
         <% end %>
       <% end %>
     </span>
@@ -24,7 +24,7 @@
       <div class="panel-body">
         <%= image_tag("http://celsian.zapto.org:3001", alt: "Refresh to restart stream.", style: "max-width:100%;") %>
         <br>
-        <small>Stream will automatically disconnect after 60 seconds to prevent data overages.</small>
+        <small>Stream will automatically disconnect after 60 seconds to prevent data overages. Refresh to restart.</small>
       </div>
     </div>
   </div>
