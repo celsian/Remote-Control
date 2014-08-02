@@ -14,9 +14,20 @@ class RemoteControlsController < ApplicationController
 
       note = Note.add(current_user, remote_control)
 
-      redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." }
+      flash.now[:success] = "The <b>#{remote_control.name}</b> was triggered at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}."
+
+      respond_to do |format|
+        format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
+        format.js 
+      end
+
     else
-      redirect_to remote_controls_path, flash: { error: "The <b>#{remote_control.name}</b> is currently disabled." }
+      flash.now[:error] = "The <b>#{remote_control.name}</b> is currently disabled."
+
+      respond_to do |format|
+        format.html { redirect_to remote_controls_path, flash: { error: "The <b>#{remote_control.name}</b> is currently disabled." } }
+        format.js 
+      end
     end
   end
 
@@ -28,9 +39,20 @@ class RemoteControlsController < ApplicationController
 
       note = Note.head_add(current_user, remote_control)
 
-      redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered for head level at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." }
+      flash.now[:success] = "The <b>#{remote_control.name}</b> was triggered for head level at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}."
+
+      respond_to do |format|
+        format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered for head level at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
+        format.js 
+      end
+
     else
-      redirect_to remote_controls_path, flash: { error: "The <b>#{remote_control.name}</b> is currently disabled." }
+      flash.now[:error] = "The <b>#{remote_control.name}</b> is currently disabled."
+
+      respond_to do |format|
+        format.html { redirect_to remote_controls_path, flash: { error: "The <b>#{remote_control.name}</b> is currently disabled." } }
+        format.js 
+      end
     end
   end
 
