@@ -1,5 +1,5 @@
 class Note < ActiveRecord::Base
-  default_scope order("id DESC")
+  default_scope { order("id DESC") }
 
   def self.add(current_user, remote_control)
     Note.check_count
@@ -13,8 +13,8 @@ class Note < ActiveRecord::Base
 
   def self.check_count
     if Note.count > 99
-      Note.last.destroy
-      Note.check_count
+      overflow = Note.all.offset(99)
+      overflow.each { |note| note.destroy }
     end
   end
 
