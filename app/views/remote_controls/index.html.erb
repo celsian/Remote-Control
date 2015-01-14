@@ -22,10 +22,14 @@
     <br><br>
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= image_tag("http://celsian.zapto.org:3001", alt: "Refresh to restart stream.", style: "max-width:100%;") %>
-        <br>
-        <small>Stream will automatically disconnect after 60 seconds to prevent data overages. Refresh to restart.</small>
+        <object data="http://konvett.com:8009/clean.php" width="100%" height="410">
+          <embed src="http://konvett.com:8009/clean.php" width="100%" height="410"> </embed>
+        </object>
       </div>
     </div>
   </div>
 <% end %>
+<!-- 
+        <%= image_tag("http://celsian.zapto.org:3001", alt: "Refresh to restart stream.", style: "max-width:100%;") %>
+        <br>
+        <small>Stream will automatically disconnect after 60 seconds to prevent data overages. Refresh to restart.</small> -->
