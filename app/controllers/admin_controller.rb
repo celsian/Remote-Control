@@ -3,7 +3,7 @@ class AdminController < ApplicationController
   before_action :require_admin
 
   def index
-
+    @note_count = Note::NOTE_COUNT
   end
 
   def notes
@@ -58,6 +58,10 @@ class AdminController < ApplicationController
     @controllers = User.where(controller: true, admin: false)
     @admins = User.where(admin: true)
     @rows = [@controllers.length, @admins.length].max
+  end
+
+  def stats
+    @notes = Note.all
   end
 
   def remove_admin
