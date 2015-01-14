@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   default_scope { order("email") }
 
+  has_many :notes
+
   PROTECTED_USERS = ['celsian@gmail.com']
 
   def self.search query
