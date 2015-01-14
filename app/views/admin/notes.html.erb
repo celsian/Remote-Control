@@ -1,60 +1,62 @@
-<div class="row">
-  <div class="col-md-1">
-  </div>
-  <div class="col-md-10">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">
-      <table width=100%>
-      <tr>
-        <td width=50%>
-        <h3 class="panel-title">
-          Action History
-        </h3>
-        </td>
-        <td width=50% style = {text-align: right;}>
-        <h3 class="panel-title pull-right">
-          Current Time: <%= @time.strftime("%k:%M:%S - %a, %B %d, %Y") %>
-        </h3>
-        </td>
-        </tr>
-        </table>
-      </div>
-
-      <!-- Table -->
-      <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Date:</th><th>Action:</th>
-            </tr>
-          </thead>
-        <% if @notes %>
-          <% @notes.each do |note| %>
-            <tr>
-              <td><%= note.created_at.strftime("%H:%M:%S - %m-%d-%Y") %></td><td><%= note.info %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </table>
-      <!-- End Table -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
     </div>
-    <ul class="pagination pagination-sm">
-      <% if @index == 0 %>
-        <li class="disabled"><a href="">&laquo;</a></li>
-      <% else %>
-        <li><%= link_to "«", admin_notes_path(q: (@index-10)) %></a></li>
-      <% end %>
+    <div class="col-md-10">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+        <table width=100%>
+        <tr>
+          <td width=50%>
+          <h3 class="panel-title">
+            Action History
+          </h3>
+          </td>
+          <td width=50% style = {text-align: right;}>
+          <h3 class="panel-title pull-right">
+            Current Time: <%= @time.strftime("%k:%M:%S - %a, %B %d, %Y") %>
+          </h3>
+          </td>
+          </tr>
+          </table>
+        </div>
 
-      <% 0.upto(@max_index/10) do |page| %>
-          <li class=<%= (page*10) == params[:q].to_i ? "active" : "" %>><%= link_to "#{page+1}", admin_notes_path(q: (page*10)) %></a></li>
-      <% end %>
+        <!-- Table -->
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Date:</th><th>Action:</th>
+              </tr>
+            </thead>
+          <% if @notes %>
+            <% @notes.each do |note| %>
+              <tr>
+                <td><%= note.created_at.strftime("%H:%M:%S - %m-%d-%Y") %></td><td><%= note.info %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+        <!-- End Table -->
+      </div>
+      <ul class="pagination pagination-sm">
+        <% if @index == 0 %>
+          <li class="disabled"><a href="">&laquo;</a></li>
+        <% else %>
+          <li><%= link_to "«", admin_notes_path(q: (@index-10)) %></a></li>
+        <% end %>
 
-      <% if @index == @max_index %>
-        <li class="disabled"><a href="">»</a></li>
-      <% else %>
-        <li><%= link_to "»", admin_notes_path(q: (@index+10)) %></a></li>
-      <% end %>
-    </ul>
+        <% 0.upto(@max_index/10) do |page| %>
+            <li class=<%= (page*10) == params[:q].to_i ? "active" : "" %>><%= link_to "#{page+1}", admin_notes_path(q: (page*10)) %></a></li>
+        <% end %>
+
+        <% if @index == @max_index %>
+          <li class="disabled"><a href="">»</a></li>
+        <% else %>
+          <li><%= link_to "»", admin_notes_path(q: (@index+10)) %></a></li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 </div>
 
