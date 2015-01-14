@@ -1,4 +1,6 @@
 class RemoteControl < ActiveRecord::Base
+  has_many :notes
+
   default_scope { order("name") }
 
   validates :gpio, presence: true, uniqueness: true
