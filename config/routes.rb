@@ -13,6 +13,7 @@ Rc::Application.routes.draw do
   get "/admin/user/:id/remove_controller/:q", to: "admin#remove_controller", as: "admin_remove_controller"
   get "/admin/user/:id/add_admin/:q", to: "admin#add_admin", as: "admin_add_admin"
   get "/admin/user/:id/add_controller/:q", to: "admin#add_controller", as: "admin_add_controller"
+  get "/admin/stats", to: "admin#stats", as: "admin_stats"
   get "/admin/access_control", to: "admin#access_control", as: "admin_access_control"
   get "/admin/access_control/disable/:id", to: "admin#access_control_disable", as: "admin_access_control_disable"
   get "/admin/access_control/enable/:id", to: "admin#access_control_enable", as: "admin_access_control_enable"
