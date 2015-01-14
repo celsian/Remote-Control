@@ -1,29 +1,36 @@
+<div class="container-fluid">
 <% provide(:title, 'Welcome') %>
 <% provide(:jumbotron, '
   <h1>Admin: <small>Control Panel</small></h1>
 '.html_safe)%>
   
-<div class="row">
-  <div class="col-md-4">
-    <h2>Users</h2>
-    <p>Add or remove controllers and administrators.</p>
-    <p><%= link_to "User Editor »", admin_user_editor_path, class: "btn btn-default" %></p>
-  </div>
+  <div class="row">
     <div class="col-md-4">
-    <h2>Access</h2>
-    <p>Enable or disable remote controls.</p>
-    <p><%= link_to "Access Control »", admin_access_control_path, class: "btn btn-default" %></p>
+      <h2>Users</h2>
+      <p>Add or remove controllers and administrators.</p>
+      <p><%= link_to "User Editor »", admin_user_editor_path, class: "btn btn-default" %></p>
+    </div>
+      <div class="col-md-4">
+      <h2>Access</h2>
+      <p>Enable or disable remote controls.</p>
+      <p><%= link_to "Access Control »", admin_access_control_path, class: "btn btn-default" %></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Notes</h2>
+      <p>Inspect last <%= @note_count %> trigger events.</p>
+      <p><%= link_to "View Notes »", admin_notes_path, class: "btn btn-default" %></p>
+   </div>
   </div>
-  <div class="col-md-4">
-    <h2>Notes</h2>
-    <p>Inspect last 100 trigger events.</p>
-    <p><%= link_to "View Notes »", admin_notes_path, class: "btn btn-default" %></p>
- </div>
-</div>
-<div class="row">
-  <div class="col-md-4">
-    <h2>Sidekiq</h2>
-    <p>Access the Sidekiq dashboard.</p>
-    <p><%= link_to "Dashboard »", sidekiq_path, class: "btn btn-default", data: { no_turbolink: true } %></p>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Statistics</h2>
+      <p>Show statistical analysis for the last <%= @note_count %> trigger events.</p>
+      <p><%= link_to "Stats »", admin_stats_path, class: "btn btn-default", data: { no_turbolink: true } %></p>
+    </div>
+    <div class="col-md-4">
+      <h2>Sidekiq</h2>
+      <p>Access the Sidekiq dashboard.</p>
+      <p><%= link_to "Dashboard »", sidekiq_path, class: "btn btn-default", data: { no_turbolink: true } %></p>
+    </div>
   </div>
 </div>
