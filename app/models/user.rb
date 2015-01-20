@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
     where("email LIKE :query", query: "%#{query}%")
   end
 
-  def self.all_note_count
+  def self.all_notes_count
     user_counts = {}
     User.all.each do |user|
       if user.notes.count > 0
