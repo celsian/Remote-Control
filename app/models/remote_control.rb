@@ -14,4 +14,14 @@ class RemoteControl < ActiveRecord::Base
     end
   end
 
+  def self.all_notes_count
+    remote_control_counts = {}
+    RemoteControl.all.each do |remote_control|
+      if remote_control.notes.count > 0
+        remote_control_counts[remote_control.name] = (remote_control.notes.count)
+      end
+    end
+    remote_control_counts
+  end
+
 end
