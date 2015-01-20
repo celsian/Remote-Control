@@ -2,7 +2,7 @@ class Note < ActiveRecord::Base
   belongs_to :remote_control
   belongs_to :user
 
-  NOTE_COUNT = 100
+  NOTE_COUNT = 500
 
   default_scope { order("id DESC") }
 
