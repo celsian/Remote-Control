@@ -9,11 +9,11 @@
     </div>
     <div class="col-md-6">
       <center><B>Total Triggers by User:</B></center>
-      <%= pie_chart(User.all_note_count) %>
+      <%= pie_chart(User.all_notes_count) %>
     </div>
     <div class="col-md-6">
       <center><B>Total Triggers by Appliance:</B></center>
-      <%= pie_chart(Note.appliance_usage) %>
+      <%= pie_chart(RemoteControl.all_notes_count) %>
     </div>
   </div>
 </div>
