@@ -11,6 +11,10 @@ gem 'devise'
 #For ruby gpio <--------------
 gem 'pi_piper', '~> 1.3.2'
 
+#For statistical analysis
+gem "chartkick"
+gem 'groupdate'
+
 #Turbo links to stop the loading JS and CSS on every page load.
 gem 'turbolinks'
 
