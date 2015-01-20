@@ -23,4 +23,15 @@ class Note < ActiveRecord::Base
     end
   end
 
+  def self.appliance_usage
+    appliance_counts = Note.unscoped.group(:remote_control_id).count
+    appliance_counts_with_name = {}
+
+    appliance_counts.each do |key, value|
+      appliance_counts_with_name[RemoteControl.find(key).name] = value
+    end
+
+    appliance_counts_with_name
+  end
+
 end
