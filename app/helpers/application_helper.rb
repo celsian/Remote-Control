@@ -8,10 +8,10 @@ module ApplicationHelper
   def site_url
     if Rails.env.production?
       # Place your production URL in the quotes below
-      "http://celsian.zapto.org:3000"
+      "http://rc.konvett.com"
     else
       # Our dev & test URL
-      "http://celsian.zapto.org:3000"
+      "http://localhost:3000"
     end
   end
 
