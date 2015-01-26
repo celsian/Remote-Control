@@ -3,6 +3,5 @@
 This app was specifically designed to interact with a simple pi_piper ruby app I have already written which controls GPIO's on a Raspberry Pi.
 
 Some thing you may want to know:
-* The gemfile was canibalized from another app and has a lot of bloatware.
 * There is a required file which is not included in /lib/ called gpio.rb. This file accepts GPIO values and will switch them on for two seconds at a time. This file should be recreated with your specific task in mind.
 * This was created in under an hour and as such much of the database management was forgone. You are expected to add GPIO's with name and pin number directly from rails console. You are also expected to manage authorized users by changing the flag (User).controller to true. You could of course set the default value of 'controller' to True in the migration file if you wanted anyone who signed up to be given rights... but why?
