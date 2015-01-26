@@ -13,9 +13,11 @@ class AdminController < ApplicationController
       @index = 0
     end
 
-    @notes = Note.all[@index..@index+9]
-    @notes_page_count = (Note.all.count/(10.to_f)).ceil
-    @max_index = @notes_page_count*10-10
+    @notes_per_page = (Note::NOTE_COUNT)/20 #Divides up all notes into 20 separate pages for display purposes.
+
+    @notes = Note.all[@index..@index+(@notes_per_page-1)]
+    @notes_page_count = (Note.all.count/(@notes_per_page.to_f)).ceil
+    @max_index = @notes_page_count*@notes_per_page-@notes_per_page
     @time = Time.new
   end
 
