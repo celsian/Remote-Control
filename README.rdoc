@@ -1,7 +1,8 @@
 == README
 
-This app was specifically designed to interact with a simple pi_piper ruby app I have already written which controls GPIO's on a Raspberry Pi.
+This app is designed to interact with a Raspberry Pi's GPIO ports which control a relay connected to a Garage Door Remote for the purpose of Garage Door Garage Light and Electronic Gate control.
 
 Some thing you may want to know:
-* There is a required file which is not included in /lib/ called gpio.rb. This file accepts GPIO values and will switch them on for two seconds at a time. This file should be recreated with your specific task in mind.
-* This was created in under an hour and as such much of the database management was forgone. You are expected to add GPIO's with name and pin number directly from rails console. You are also expected to manage authorized users by changing the flag (User).controller to true. You could of course set the default value of 'controller' to True in the migration file if you wanted anyone who signed up to be given rights... but why?
+* There is a required file which is not included in /lib/ called gpio.rb. This file accepts GPIO values and will switch them on for one second at a time. This file should be recreated with your specific task in mind.
+* You are expected to add GPIO's with name and pin number directly to the Database.
+
