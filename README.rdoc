@@ -2,7 +2,22 @@
 
 This app is designed to interact with a Raspberry Pi's GPIO ports which control a relay connected to a Garage Door Remote for the purpose of Garage Door Garage Light and Electronic Gate control.
 
-Some thing you may want to know:
+[Some thing you may want to know:]
 * There is a required file which is not included in /lib/ called gpio.rb. This file accepts GPIO values and will switch them on for one second at a time. This file should be recreated with your specific task in mind.
 * You are expected to add GPIO's with name and pin number directly to the Database.
 
+[Walk Through:]
+* Main Page for 'Controller' Users:
+http://i.imgur.com/6MIAufq.png
+
+* Admin control panel:
+http://i.imgur.com/892quaA.png
+
+* Access Control: Manage which GPIO's are currently accessible to Controllers:
+http://i.imgur.com/DRUn8Tz.png
+
+* User Access Control:
+http://i.imgur.com/kZr6qh5.png
+
+* Statistics:
+http://i.imgur.com/AuVdSCg.png
