@@ -1,4 +1,4 @@
-== README
+== Remote-Control
 
 This app is designed to interact with a Raspberry Pi's GPIO ports which control a relay connected to a Garage Door Remote for the purpose of Garage Door Garage Light and Electronic Gate control.
 
