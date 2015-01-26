@@ -43,17 +43,17 @@
         <% if @index == 0 %>
           <li class="disabled"><a href="">&laquo;</a></li>
         <% else %>
-          <li><%= link_to "«", admin_notes_path(q: (@index-10)) %></a></li>
+          <li><%= link_to "«", admin_notes_path(q: (@index-@notes_per_page)) %></a></li>
         <% end %>
 
-        <% 0.upto(@max_index/10) do |page| %>
-            <li class=<%= (page*10) == params[:q].to_i ? "active" : "" %>><%= link_to "#{page+1}", admin_notes_path(q: (page*10)) %></a></li>
+        <% 0.upto(@max_index/@notes_per_page) do |page| %>
+            <li class=<%= (page*@notes_per_page) == params[:q].to_i ? "active" : "" %>><%= link_to "#{page+1}", admin_notes_path(q: (page*@notes_per_page)) %></a></li>
         <% end %>
 
         <% if @index == @max_index %>
           <li class="disabled"><a href="">»</a></li>
         <% else %>
-          <li><%= link_to "»", admin_notes_path(q: (@index+10)) %></a></li>
+          <li><%= link_to "»", admin_notes_path(q: (@index+@notes_per_page)) %></a></li>
         <% end %>
       </ul>
     </div>
