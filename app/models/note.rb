@@ -4,16 +4,15 @@ class Note < ActiveRecord::Base
 
   NOTE_COUNT = 500
 
-  default_scope { order("id DESC") }
+  default_scope { order("updated_at DESC") }
 
   def self.add(current_user, remote_control)
     Note.check_count
 
-    recent_notes = Note.where("created_at >= ?", 30.seconds.ago)
+    recent_notes = Note.where("updated_at >= ?", 30.seconds.ago)
 
     recent_notes.each do |note|
       if note.user == current_user && note.remote_control == remote_control
-        note.created_at = Time.now
         note.updated_at = Time.now
         note.save
         return note
