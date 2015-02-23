@@ -32,7 +32,7 @@
           <% if @notes %>
             <% @notes.each do |note| %>
               <tr>
-                <td><%= note.created_at.strftime("%H:%M:%S - %m-%d-%Y") %></td><td><%= note.info %></td>
+                <td><%= note.updated_at.strftime("%H:%M:%S - %m-%d-%Y") %></td><td><%= note.info %></td>
               </tr>
             <% end %>
           <% end %>
