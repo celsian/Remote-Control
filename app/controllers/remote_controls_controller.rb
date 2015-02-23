@@ -14,10 +14,10 @@ class RemoteControlsController < ApplicationController
 
       note = Note.add(current_user, remote_control)
 
-      flash.now[:success] = "The <b>#{remote_control.name}</b> was triggered at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}."
+      flash.now[:success] = "The <b>#{remote_control.name}</b> was triggered at #{note.updated_at.strftime("%I:%M:%S %p on %m-%d-%Y")}."
 
       respond_to do |format|
-        format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
+        format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered at #{note.updated_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
         format.js 
       end
 
@@ -39,10 +39,10 @@ class RemoteControlsController < ApplicationController
 
       note = Note.head_add(current_user, remote_control)
 
-      flash.now[:success] = "The <b>#{remote_control.name}</b> was triggered for head level at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}."
+      flash.now[:success] = "The <b>#{remote_control.name}</b> was triggered for head level at #{note.updated_at.strftime("%I:%M:%S %p on %m-%d-%Y")}."
 
       respond_to do |format|
-        format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered for head level at #{note.created_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
+        format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered for head level at #{note.updated_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
         format.js 
       end
 
