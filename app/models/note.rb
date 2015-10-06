@@ -12,7 +12,7 @@ class Note < ActiveRecord::Base
     recent_notes = Note.where("updated_at >= ?", 30.seconds.ago)
 
     recent_notes.each do |note|
-      if note.user == current_user && note.remote_control == remote_control
+      if note.user == current_user && note.remote_control == remote_control && note.remote_control.name == "Gate"
         note.updated_at = Time.now
         note.save
         return note
