@@ -1,10 +1,10 @@
+<div class="col-md-4">
 <h2>Sign in:</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br>
-  <%= f.email_field :email, autofocus: true %></div><br>
+  <%= f.email_field :email, class: "form-control", autofocus: true %></div><br>
   <div><%= f.label :password %><br>
-    <%= f.password_field :password, autocomplete: "off" %></div><br>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %></div><br>
 
   <% if devise_mapping.rememberable? -%>
     <div><%= f.check_box :remember_me %> &nbsp; <%= f.label :remember_me %></div>
@@ -15,3 +15,4 @@
 <% end %>
 <br>
 <%= render "devise/shared/links" %>
+</div>
