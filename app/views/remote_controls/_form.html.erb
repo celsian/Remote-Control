@@ -1,0 +1,22 @@
+<%= form_for(@remote_control, html: {class: 'form-horizontal'}) do |f| %>
+    <div class="field form-group">
+      <%= f.label :name, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-6">
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="field form-group">
+      <%= f.label :gpio, class: 'col-sm-2 control-label' %>
+      <div class="col-sm-6">
+        <%= f.text_field :gpio, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="actions form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+      <% if @remote_control.persisted? %>
+        <%= link_to "Delete", @remote_control, data: {:confirm => "Are you sure you want to delete #{@remote_control.name + ": " + @remote_control.gpio}?"}, :method => :delete, class: "btn btn btn-danger" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
