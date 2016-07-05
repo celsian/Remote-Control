@@ -16,6 +16,8 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rubygems'
 require 'factory_girl'
+require_relative 'support/controller_helpers'
+require 'devise'
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -79,4 +81,10 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 =end
+  config.include ControllerHelpers, type: :controller
+  Warden.test_mode!
+
+  config.after do
+    Warden.test_reset!
+  end
 end
