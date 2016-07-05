@@ -66,6 +66,17 @@ class AdminController < ApplicationController
     @notes = Note.all
   end
 
+  def add_admin
+    user = User.find(params[:id])
+    user.admin = true
+    if user.save
+      redirect_to admin_user_editor_path(q: params[:q]), flash: { success: "#{user.email} is now an Administrator." }
+    else
+      flash[:error] = "Error: There was a problem adding the rights."
+      render :add_editor_admin
+    end
+  end
+
   def remove_admin
     user = User.find(params[:id])
     unless User::PROTECTED_USERS.include?(user.email)
@@ -81,17 +92,6 @@ class AdminController < ApplicationController
     end
   end
 
-  def remove_controller
-    user = User.find(params[:id])
-    user.controller = false
-    if user.save
-      redirect_to admin_user_editor_path(q: params[:q]), flash: { success: "#{user.email} is no longer an Controller." }
-    else
-      flash[:error] = "Error: There was a problem removing the rights."
-      render :view_editor_admin
-    end
-  end
-
   def add_controller
     user = User.find(params[:id])
     user.controller = true
@@ -103,14 +103,14 @@ class AdminController < ApplicationController
     end
   end
 
-  def add_admin
+  def remove_controller
     user = User.find(params[:id])
-    user.admin = true
+    user.controller = false
     if user.save
-      redirect_to admin_user_editor_path(q: params[:q]), flash: { success: "#{user.email} is now an Administrator." }
+      redirect_to admin_user_editor_path(q: params[:q]), flash: { success: "#{user.email} is no longer an Controller." }
     else
-      flash[:error] = "Error: There was a problem adding the rights."
-      render :add_editor_admin
+      flash[:error] = "Error: There was a problem removing the rights."
+      render :view_editor_admin
     end
   end
 
