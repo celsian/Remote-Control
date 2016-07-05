@@ -3,6 +3,7 @@ class RemoteControl < ActiveRecord::Base
 
   default_scope { order("name") }
 
+  validates :name, presence: true, uniqueness: true
   validates :gpio, presence: true, uniqueness: true
   validate :gpio_validation
 
@@ -10,7 +11,7 @@ class RemoteControl < ActiveRecord::Base
 
   def gpio_validation
     unless VALID_GPIO.include?(gpio)
-      errors.add(:base, 'value cannot be outside the valid GPIO Range.')
+      errors.add(:base, "Gpio value can't be outside the valid range: (#{VALID_GPIO.join(', ')})")
     end
   end
 
@@ -22,6 +23,14 @@ class RemoteControl < ActiveRecord::Base
       end
     end
     remote_control_counts
+  end
+
+  def error_messages
+    messages = ""
+    errors.full_messages.each do |message|
+      messages += message + ". "
+    end
+    messages
   end
 
 end
