@@ -11,6 +11,7 @@
             <th>GPIO #:</th>
             <th width=50%>Name:</th>
             <th>Change State:</th>
+            <th><%= link_to "New", new_remote_control_path, class: "btn btn-sm btn-success" %></th>
           </tr>
         </thead>
         <% @remote_controls.each do |remote_control| %>
@@ -24,6 +25,9 @@
               <% else %>
                 <%= link_to "Enable", admin_access_control_enable_path(remote_control), class: "btn btn-sm btn-success" %>
               <% end %>
+            </td>
+            <td>
+              <%= link_to "Edit", edit_remote_control_path(remote_control), class: "btn btn-sm btn-info" %>
             </td>
           </tr>
         <% end %>
