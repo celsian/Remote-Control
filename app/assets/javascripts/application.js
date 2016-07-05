@@ -11,9 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
+//= require bootstrap-sprockets
 //= require jquery_ujs
-//= require bootstrap
-//= require turbolinks
+// require turbolinks
 //= require_tree .
-
-Turbolinks.enableTransitionCache();
