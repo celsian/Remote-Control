@@ -1,6 +1,7 @@
 class RemoteControlsController < ApplicationController
   before_action :authenticate_user!
   before_action :require_controller
+  before_action :require_admin, only: [:new, :edit, :create, :update, :destroy]
 
   def index
     @remote_controls = RemoteControl.all
@@ -56,10 +57,56 @@ class RemoteControlsController < ApplicationController
     end
   end
 
+  def new
+    @remote_control = RemoteControl.new
+  end
+
+  def edit
+    @remote_control = RemoteControl.find(params[:id])
+  end
+
+  def create
+    @remote_control = RemoteControl.new remote_control_params
+
+    if @remote_control.save
+      redirect_to admin_access_control_path, flash: { success: "GPIO entry added." }
+    else
+      flash[:error] = "Error: #{@remote_control.error_messages}"
+      render :new
+    end
+  end
+
+  def update
+    @remote_control = RemoteControl.find(params[:id])
+
+    if @remote_control.update_attributes remote_control_params
+      redirect_to admin_access_control_path, flash: { success: "GPIO entry updated." }
+    else
+      flash[:error] = "Error: #{@remote_control.error_messages}"
+      render :edit
+    end
+  end
+
+  def destroy
+    RemoteControl.find(params[:id]).destroy
+
+    redirect_to admin_access_control_path, flash: { success: "GPIO entry deleted." }
+  end
+
   private
+
+  def remote_control_params
+    params.require(:remote_control).permit(:id, :gpio, :name)
+  end
 
   def require_controller
     unless current_user.controller == true
+      redirect_to root_path, flash: { error: "You are not authorized to perform that action." }
+    end
+  end
+
+  def require_admin
+    unless current_user.admin == true
       redirect_to root_path, flash: { error: "You are not authorized to perform that action." }
     end
   end
