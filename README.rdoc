@@ -1,10 +1,10 @@
 == Remote-Control
 
-This app is designed to interact with a Raspberry Pi's GPIO ports which control a relay connected to a Garage Door Remote for the purpose of Garage Door Garage Light and Electronic Gate control.
+This app is designed to interact with a Raspberry Pi's GPIO ports which control a relay connected to a Garage Door Remote for the purpose of garage door, garage light and electronic gate control.
 
 [Some thing you may want to know:]
-* There is a required file which is not included in /lib/ called gpio.rb. This file accepts GPIO values and will switch them on for one second at a time. This file should be recreated with your specific task in mind.
-* You are expected to add GPIO's with name and pin number directly to the Database.
+* The Valid GPIO range changes based on your version of the Raspbery Pi. Adjust the valid GPIO values in the Remote Control model or some GPIO's will be inaccessible.
+* This application does not check the status of your physical hardware, it only toggles the remote. A RPi Camera is recommended for peace of mind. Alternatively a simple LED & light detector could be added to the door and read by the PiPiper gem.
 
 [Walk Through:]
 * Main Page for 'Controller' Users:
