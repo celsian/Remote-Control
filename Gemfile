@@ -9,7 +9,7 @@ gem "pg"
 gem 'devise'
 
 #For ruby gpio <--------------
-gem 'pi_piper'
+gem 'pi_piper', '~> 1.3.2'
 
 #For statistical analysis
 gem "chartkick"
