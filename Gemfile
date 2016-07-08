@@ -9,7 +9,7 @@ gem "pg"
 gem 'devise'
 
 #For ruby gpio <--------------
-gem 'pi_piper', '~> 1.3.2'
+gem 'pi_piper', '~> 1.3.2' #This older version works, newer version does not actuate my pins.
 
 #For statistical analysis
 gem "chartkick"
