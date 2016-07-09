@@ -10,7 +10,7 @@ class GpioOpenWorker
     sleep 1
     pin.on
 
-    File.open("/sys/class/gpio/unexport","w") { |f| f.write(pin) }
+    File.open("/sys/class/gpio/unexport","w") { |f| f.write(pin.pin) }
   end
   
 end
