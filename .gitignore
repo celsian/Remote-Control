@@ -15,8 +15,6 @@
 /log/*.log
 /tmp
 
-lib/gpio.rb
-
 config/database.yml
 
 app/views/layouts/application.html.erb.bak
@@ -44,9 +42,5 @@ public/assets/apple-touch-icon-72x72-precomposed-11bad6ec7e6bf43709480fb2cf0684a
 public/assets/apple-touch-icon-precomposed-9357077566e6cae90ad530c33baacb7f.png
 
 public/assets/favicon-ef0bdc1a03adcf5a7e9701f91eef36e3.ico
-
-app/workers/gpio_worker.rb
-
-app/workers/gpio_worker.rb
 
 dump.rdb

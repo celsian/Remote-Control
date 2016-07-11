@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-12">
       <center><h3><B>Total Triggers by Day:</B></h3></center>
-      <%= line_chart Note.unscoped.group_by_day(:updated_at).count %>
+      <%= line_chart Note.unscoped.group_by_day(:created_at, format: "%B %d, %Y").count %>
     </div>
     <div class="col-md-6">
       <center><B>Total Triggers by User:</B></center>
