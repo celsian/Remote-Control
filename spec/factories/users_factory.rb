@@ -1,6 +1,8 @@
 FactoryGirl.define do
+  sequence(:email) { |n| "person-#{n}@example.com" }
+
   factory :user do
-    email "standard@new_user.com"
+    email
     password "password"
     password_confirmation "password"
     controller false
@@ -8,12 +10,12 @@ FactoryGirl.define do
   end
 
   factory :controller, parent: :user do
-    email "controller@new_user.com"
+    email
     controller true
   end
 
   factory :admin, parent: :user do
-    email "admin@new_user.com"
+    email
     controller true
     admin true
   end

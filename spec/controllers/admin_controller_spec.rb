@@ -44,7 +44,7 @@ RSpec.describe AdminController, type: :controller do
 
   describe "GET #notes" do
     let(:admin) { create(:admin) }
-    let(:note_list) { create_list(:note, 3) }
+    let!(:notes) { create_list(:note, 3) }
 
     before(:each) do
       sign_in admin
@@ -59,8 +59,7 @@ RSpec.describe AdminController, type: :controller do
     it "retrieves all notes" do
       get :notes
 
-      binding.pry
-      expect(assigns(:notes)).to eq(note_list)
+      expect(assigns(:notes)).to eq(notes.reverse)
     end
   end
 
