@@ -1,6 +1,10 @@
 FactoryGirl.define do
   factory :remote_control do
-    gpio "21"
-    name  "gate"
+    sequence(:gpio) { |n| RemoteControl::VALID_GPIO[n % 8] }
+    sequence(:name) { |n| "Door #{n}" }
+  end
+
+  factory :remote_control_disabled, parent: :remote_control do
+    enabled false
   end
 end

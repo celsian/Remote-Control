@@ -4,29 +4,40 @@ RSpec.describe RemoteControl, :type => :model do
   let(:remote_control) { FactoryGirl.create(:remote_control) }
   let(:remote_controls) { RemoteControl.all }
 
-  it "orders by name" do
-    gate = FactoryGirl.create(:remote_control, gpio: "23", name: "Gate")
-    garage = FactoryGirl.create(:remote_control, gpio: "22", name: "Garage")
+  describe "default scope" do
+    it "orders by name" do
+      gate = FactoryGirl.create(:remote_control, gpio: "23", name: "Gate")
+      garage = FactoryGirl.create(:remote_control, gpio: "22", name: "Garage")
 
-    expect(remote_controls.index(gate)).to be > remote_controls.index(garage)
+      expect(remote_controls.index(gate)).to be > remote_controls.index(garage)
+    end
   end
 
-  it "requires a gpio number" do
-    expect(FactoryGirl.build(:remote_control, gpio: "")).not_to be_valid
+  describe "validates presence of GPIO Number" do
+    it "requires a gpio number" do
+      expect(FactoryGirl.build(:remote_control, gpio: "")).not_to be_valid
+    end
   end
 
-  it "requires a valid GPIO number (one that exists on the rpi)" do
-    expect(FactoryGirl.build(:remote_control, gpio: "2")).not_to be_valid
+  describe "validates valid gpio number" do
+    it "requires a valid GPIO number (one that exists on the rpi & VALID_GPIO)" do
+      expect(FactoryGirl.build(:remote_control, gpio: "2")).not_to be_valid
+    end
   end
 
-  it "requires a unique GPIO number" do
-    remote_control
-    expect(FactoryGirl.build(:remote_control, name: "other_name")).not_to be_valid
+  describe "validates uniqueness of GPIO Number" do
+    it "requires a unique GPIO number" do
+      FactoryGirl.create(:remote_control, name: "4", gpio: 4)
+
+      expect(FactoryGirl.build(:remote_control, name: "4 again", gpio: 4)).not_to be_valid
+    end
   end
 
-  it "requires a unique name" do
-    FactoryGirl.create(:remote_control)
+  describe "validates uniqueness of name" do
+    it "requires a unique name" do
+      FactoryGirl.create(:remote_control, name: "4")
 
-    expect(FactoryGirl.build(:remote_control)).not_to be_valid
+      expect(FactoryGirl.build(:remote_control, name: "4")).not_to be_valid
+    end
   end
 end
