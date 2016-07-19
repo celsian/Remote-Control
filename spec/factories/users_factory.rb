@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  sequence(:email) { |n| "person-#{n}@example.com" }
+  sequence(:email) { |n| "no-one-#{n}@example.com" }
 
   factory :user do
     email
@@ -10,12 +10,12 @@ FactoryGirl.define do
   end
 
   factory :controller, parent: :user do
-    email
+    sequence(:email) { |n| "controller-#{n}@example.com" }
     controller true
   end
 
   factory :admin, parent: :user do
-    email
+    sequence(:email) { |n| "admin-#{n}@example.com" }
     controller true
     admin true
   end

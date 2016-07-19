@@ -123,5 +123,74 @@ RSpec.describe AdminController, type: :controller do
     end
   end
 
-  
+  describe "GET #user_editor" do
+    before(:each) do
+      sign_in admin
+    end
+
+    it "returns http success" do
+      get :user_editor
+
+      expect(response).to have_http_status(:success)
+    end
+
+    context "no search params present" do
+      it "lists no users in search" do
+        get :user_editor
+
+        expect(assigns(:users)).to eq([])
+      end
+    end
+
+    context "search params present" do
+      let(:search_string) { "admin" }
+      let(:params) { { q: search_string } }
+
+      it "lists matching users" do
+        get :user_editor, params
+
+        expect(assigns(:users)).to eq(User.search(search_string))
+      end
+    end
+
+    it "fetches admin users" do
+      create_list(:user, 3)
+      create_list(:admin, 2)
+
+      get :user_editor
+
+      expect(assigns(:admins)).to eq(User.where(admin: true))
+    end
+
+    it "fetches controller only users" do
+      create_list(:user, 3)
+      create_list(:controller, 2)
+      create_list(:admin, 2)
+
+      get :user_editor
+            
+      expect(assigns(:controllers)).to eq(User.where(controller: true, admin: false))
+    end
+  end
+
+  describe "GET #stats" do
+    let!(:notes) { create_list(:note, 3) }
+
+    before(:each) do
+      sign_in admin
+    end
+
+    it "returns http success" do
+      get :stats
+
+      expect(response).to have_http_status(:success)
+    end
+
+    it "retrieves all notes" do
+      get :stats
+
+      expect(assigns(:notes)).to eq(notes.reverse)
+    end
+  end 
+
 end
