@@ -4,19 +4,23 @@ RSpec.describe AdminController, type: :controller do
   let(:admin) { create(:admin) }
   let(:user) { create(:user) }
 
+  before(:each) do
+    sign_in admin
+  end
+
+  before(:each, :sign_in_user) do
+    sign_in user
+  end
+
   describe "GET #index" do
     context "user logged in and admin" do
       it "returns http success" do
-        sign_in admin
-
         get :index
 
         expect(response).to have_http_status(:success)
       end
 
       it "shows the proper note count" do
-        sign_in admin
-
         get :index
 
         expect(assigns(:note_count)).to eq(Note::NOTE_COUNT)
@@ -24,9 +28,7 @@ RSpec.describe AdminController, type: :controller do
     end
 
     context "user logged in and not admin" do
-      it "denies user" do
-        sign_in user
-
+      it "denies user", :sign_in_user do
         get :index
 
         expect(response).to redirect_to(root_path)
@@ -35,6 +37,8 @@ RSpec.describe AdminController, type: :controller do
 
     context "user is not logged in" do
       it "redirects user to login page" do
+        sign_out admin
+
         get :index
 
         expect(response).to redirect_to(new_user_session_path)
@@ -44,10 +48,6 @@ RSpec.describe AdminController, type: :controller do
 
   describe "GET #notes" do
     let!(:notes) { create_list(:note, 3) }
-
-    before(:each) do
-      sign_in admin
-    end
 
     it "returns http success" do
       get :notes
@@ -63,10 +63,6 @@ RSpec.describe AdminController, type: :controller do
   end
 
   describe "GET #access_control" do
-    before(:each) do
-      sign_in admin
-    end
-
     let(:remote_controls) { create_list(:remote_control, 3) }
 
     it "returns http success" do
@@ -83,10 +79,6 @@ RSpec.describe AdminController, type: :controller do
   end
 
   describe "GET #access_control_enable" do
-    before(:each) do
-      sign_in admin
-    end
-
     let(:remote_control) { create(:remote_control_disabled) }
     let(:params) { { id: remote_control.id } }
 
@@ -103,10 +95,6 @@ RSpec.describe AdminController, type: :controller do
   end
 
   describe "GET #access_control_disable" do
-    before(:each) do
-      sign_in admin
-    end
-
     let(:remote_control) { create(:remote_control) }
     let(:params) { { id: remote_control.id } }
 
@@ -124,10 +112,6 @@ RSpec.describe AdminController, type: :controller do
   end
 
   describe "GET #user_editor" do
-    before(:each) do
-      sign_in admin
-    end
-
     it "returns http success" do
       get :user_editor
 
@@ -176,10 +160,6 @@ RSpec.describe AdminController, type: :controller do
   describe "GET #stats" do
     let!(:notes) { create_list(:note, 3) }
 
-    before(:each) do
-      sign_in admin
-    end
-
     it "returns http success" do
       get :stats
 
@@ -191,6 +171,74 @@ RSpec.describe AdminController, type: :controller do
 
       expect(assigns(:notes)).to eq(notes.reverse)
     end
-  end 
+  end
+
+  describe "GET #add_admin" do
+    let(:new_user) { create(:user) }
+    let(:params) { { id: new_user.id, q: "@" } }
+
+    it "redirects to admin_user_editor_path" do
+      get :add_admin, params
+
+      expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
+    end
+    
+    it "redirects to admin_user_editor_path" do
+      get :add_admin, params
+
+      expect((new_user.reload).admin).to be(true) 
+    end
+  end
+
+  describe "GET #remove_admin" do
+    let(:admin_user) { create(:admin) }
+    let(:params) { { id: admin_user.id, q: "@" } }
+
+    it "redirects to admin_user_editor_path" do
+      get :remove_admin, params
+
+      expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
+    end
+    
+    it "redirects to admin_user_editor_path" do
+      get :remove_admin, params
+
+      expect((admin_user.reload).admin).to be(false) 
+    end
+  end
+
+  describe "GET #add_controller" do
+    let(:new_user) { create(:user) }
+    let(:params) { { id: new_user.id, q: "@" } }
+
+    it "redirects to admin_user_editor_path" do
+      get :add_controller, params
+
+      expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
+    end
+    
+    it "redirects to admin_user_editor_path" do
+      get :add_controller, params
+
+      expect((new_user.reload).controller).to be(true) 
+    end
+  end
+
+  describe "GET #remove_controller" do
+    let(:controller_user) { create(:controller) }
+    let(:params) { { id: controller_user.id, q: "@" } }
+
+    it "redirects to admin_user_editor_path" do
+      get :remove_controller, params
+
+      expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
+    end
+    
+    it "redirects to admin_user_editor_path" do
+      get :remove_controller, params
+
+      expect((controller_user.reload).controller).to be(false) 
+    end
+  end
 
 end
