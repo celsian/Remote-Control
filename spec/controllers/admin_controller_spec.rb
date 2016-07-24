@@ -148,7 +148,7 @@ RSpec.describe AdminController, type: :controller do
 
     it "fetches controller only users" do
       create_list(:user, 3)
-      create_list(:controller, 2)
+      create_list(:controller_user, 2)
       create_list(:admin, 2)
 
       get :user_editor
@@ -225,7 +225,7 @@ RSpec.describe AdminController, type: :controller do
   end
 
   describe "GET #remove_controller" do
-    let(:controller_user) { create(:controller) }
+    let(:controller_user) { create(:controller_user) }
     let(:params) { { id: controller_user.id, q: "@" } }
 
     it "redirects to admin_user_editor_path" do
