@@ -9,9 +9,10 @@ FactoryGirl.define do
     admin false
   end
 
-  factory :controller, parent: :user do
+  factory :controller_user, parent: :user do
     sequence(:email) { |n| "controller-#{n}@example.com" }
     controller true
+    admin false
   end
 
   factory :admin, parent: :user do
