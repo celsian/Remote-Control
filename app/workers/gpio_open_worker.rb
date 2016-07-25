@@ -7,7 +7,7 @@ class GpioOpenWorker
     remote_control = RemoteControl.find(remote_control_id)
     
     pin = PiPiper::Pin.new(:pin => remote_control.gpio, :direction => :out)
-    sleep 1
+    sleep 0.5
     pin.on
 
     File.open("/sys/class/gpio/unexport","w") { |f| f.write(pin.pin) }
