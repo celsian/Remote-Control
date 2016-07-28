@@ -2,7 +2,8 @@ class GpioHeadOpenWorker
   include Sidekiq::Worker
   require 'rubygems'
 
-  TIME_IT_TAKES_DOOR_TO_TRAVEL_TO_HEAD_LEVEL = 11
+  #Formerly 11, but reduced the button press duration by 0.5, so increasing wait time to reflect.
+  TIME_IT_TAKES_DOOR_TO_TRAVEL_TO_HEAD_LEVEL = 11.5
 
   def perform(remote_control_id)
     GpioOpenWorker.perform_async(remote_control_id)
