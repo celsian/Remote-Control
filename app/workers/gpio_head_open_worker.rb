@@ -3,7 +3,7 @@ class GpioHeadOpenWorker
   require 'rubygems'
 
   #Formerly 11, but reduced the button press duration by 0.5, so increasing wait time to reflect.
-  TIME_IT_TAKES_DOOR_TO_TRAVEL_TO_HEAD_LEVEL = 11.5
+  TIME_IT_TAKES_DOOR_TO_TRAVEL_TO_HEAD_LEVEL = 11
 
   def perform(remote_control_id)
     GpioOpenWorker.perform_async(remote_control_id)
