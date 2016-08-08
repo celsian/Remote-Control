@@ -3,6 +3,8 @@
 This app is designed to interact with a Raspberry Pi's GPIO ports which control a relay connected to a Garage Door Remote for the purpose of garage door, garage light and electronic gate control.
 
 [Some thing you may want to know:]
+* Ruby Version: 2.3.1p112
+* Rails Version: 4.2.6
 * The Valid GPIO range changes based on your version of the Raspbery Pi. Adjust the valid GPIO values in the Remote Control model or some GPIO's will be inaccessible.
 * This application does not check the status of your physical hardware, it only toggles the remote. A RPi Camera is recommended for peace of mind. Alternatively a simple LED & light detector could be added to the door and read by the PiPiper gem.
 
