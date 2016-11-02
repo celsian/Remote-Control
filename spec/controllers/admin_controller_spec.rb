@@ -152,7 +152,7 @@ RSpec.describe AdminController, type: :controller do
       create_list(:admin, 2)
 
       get :user_editor
-            
+
       expect(assigns(:controllers)).to eq(User.where(controller: true, admin: false))
     end
   end
@@ -182,11 +182,11 @@ RSpec.describe AdminController, type: :controller do
 
       expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
     end
-    
+
     it "redirects to admin_user_editor_path" do
       get :add_admin, params
 
-      expect((new_user.reload).admin).to be(true) 
+      expect((new_user.reload).admin).to be(true)
     end
   end
 
@@ -199,11 +199,11 @@ RSpec.describe AdminController, type: :controller do
 
       expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
     end
-    
+
     it "redirects to admin_user_editor_path" do
       get :remove_admin, params
 
-      expect((admin_user.reload).admin).to be(false) 
+      expect((admin_user.reload).admin).to be(false)
     end
   end
 
@@ -216,11 +216,11 @@ RSpec.describe AdminController, type: :controller do
 
       expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
     end
-    
+
     it "redirects to admin_user_editor_path" do
       get :add_controller, params
 
-      expect((new_user.reload).controller).to be(true) 
+      expect((new_user.reload).controller).to be(true)
     end
   end
 
@@ -233,11 +233,11 @@ RSpec.describe AdminController, type: :controller do
 
       expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
     end
-    
+
     it "redirects to admin_user_editor_path" do
       get :remove_controller, params
 
-      expect((controller_user.reload).controller).to be(false) 
+      expect((controller_user.reload).controller).to be(false)
     end
   end
 
