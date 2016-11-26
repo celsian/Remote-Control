@@ -15,6 +15,9 @@
 /log/*.log
 /tmp
 
+#Ignore secrets
+/config/secrets.yml
+
 .DS_Store
 
 config/database.yml
