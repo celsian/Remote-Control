@@ -64,6 +64,7 @@ class AdminController < ApplicationController
 
   def stats
     @notes = Note.all
+    @average_activations = Note.average_activations
   end
 
   def add_admin

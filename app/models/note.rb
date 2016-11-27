@@ -34,4 +34,16 @@ class Note < ActiveRecord::Base
     end
   end
 
+  def self.average_activations
+    day_count_array = Note.unscoped.group_by_day(:created_at).count.to_a
+
+    count_array = []
+
+    day_count_array.each do |day_count|
+      count_array << day_count[1]
+    end
+
+    count_array.sum/count_array.count.to_f
+  end
+
 end

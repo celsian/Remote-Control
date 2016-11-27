@@ -5,6 +5,7 @@
     </div>
     <div class="col-md-12">
       <center><h3><B>Total Triggers by Day:</B></h3></center>
+      <center><%= "Averation activations per day: #{@average_activations.round(2)}" %></center>
       <%= line_chart Note.unscoped.group_by_day(:created_at, format: "%B %d, %Y").count %>
     </div>
     <div class="col-md-6">
