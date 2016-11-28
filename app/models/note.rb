@@ -28,8 +28,8 @@ class Note < ActiveRecord::Base
   end
 
   def self.check_count
-    if Note.count > (NOTE_COUNT-1)
-      overflow = Note.all.offset((NOTE_COUNT-1))
+    if Note.count > (NOTE_COUNT)
+      overflow = Note.all.offset((NOTE_COUNT))
       overflow.each { |note| note.destroy }
     end
   end
