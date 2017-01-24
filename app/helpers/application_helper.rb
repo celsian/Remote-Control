@@ -5,16 +5,6 @@ module ApplicationHelper
     "Remote Control"
   end
 
-  def site_url
-    if Rails.env.production?
-      # Place your production URL in the quotes below
-      "http://rc.konvett.com"
-    else
-      # Our dev & test URL
-      "http://localhost:3000"
-    end
-  end
-
   def meta_author
     # Change the value below between the quotes.
     "Lucas Paolella"
