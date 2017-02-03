@@ -2,7 +2,7 @@ class GpioHeadOpenWorker
   include Sidekiq::Worker
   require 'rubygems'
 
-  TIME_IT_TAKES_DOOR_TO_TRAVEL_TO_HEAD_LEVEL = 12
+  TIME_IT_TAKES_DOOR_TO_TRAVEL_TO_HEAD_LEVEL = 11.5
 
   def perform(remote_control_id)
     GpioOpenWorker.perform_async(remote_control_id)
