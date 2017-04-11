@@ -10,15 +10,6 @@
         <% end %>
       <% end %>
     </span>
-    <span class="btn-group-vertical btn-group-lg">
-      <% @remote_controls.each do |remote_control| %>
-        <% unless remote_control.name == "Gate" %>
-          <%= link_to "Head", remote_control.enabled ? remote_control_head_open_path(remote_control) : "", class: remote_control.enabled ? "btn btn-success" : "btn btn-default disabled", remote: true %>
-        <% else %>
-          <%= link_to "N/A", "", class: "btn btn-default disabled", remote: true %>
-        <% end %>
-      <% end %>
-    </span>
     <br><br>
     <div class="panel panel-default">
       <div class="panel-body">
