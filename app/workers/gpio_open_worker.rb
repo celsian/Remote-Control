@@ -11,7 +11,7 @@ class GpioOpenWorker
 
     if Rails.env.production?
       pin = PiPiper::Pin.new(:pin => remote_control.gpio, :direction => :out)
-      sleep 0.5
+      sleep 1.0
       pin.on
 
       File.open("/sys/class/gpio/unexport","w") { |f| f.write(pin.pin) }
