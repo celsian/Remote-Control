@@ -19,7 +19,7 @@ class RemoteControlsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered at #{note.updated_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
-        format.js 
+        format.js
       end
 
     else
@@ -27,7 +27,7 @@ class RemoteControlsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to remote_controls_path, flash: { error: "The <b>#{remote_control.name}</b> is currently disabled." } }
-        format.js 
+        format.js
       end
     end
   end
@@ -44,7 +44,7 @@ class RemoteControlsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered for head level at #{note.updated_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
-        format.js 
+        format.js
       end
 
     else
@@ -52,7 +52,7 @@ class RemoteControlsController < ApplicationController
 
       respond_to do |format|
         format.html { redirect_to remote_controls_path, flash: { error: "The <b>#{remote_control.name}</b> is currently disabled." } }
-        format.js 
+        format.js
       end
     end
   end
@@ -96,7 +96,7 @@ class RemoteControlsController < ApplicationController
   private
 
   def remote_control_params
-    params.require(:remote_control).permit(:id, :gpio, :name)
+    params.require(:remote_control).permit(:id, :gpio, :name, :priority)
   end
 
   def require_controller

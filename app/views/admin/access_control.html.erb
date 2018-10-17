@@ -9,7 +9,8 @@
           <tr>
             <th>ID:</th>
             <th>GPIO #:</th>
-            <th width=50%>Name:</th>
+            <th>Priority:</th>
+            <th width=35%>Name:</th>
             <th>Change State:</th>
             <th><%= link_to "New", new_remote_control_path, class: "btn btn-sm btn-success" %></th>
           </tr>
@@ -18,6 +19,7 @@
           <tr>
             <td><%= remote_control.id %></td>
             <td><%= remote_control.gpio %></td>
+            <td><%= remote_control.priority %></td>
             <td><%= remote_control.name %></td>
             <td>
               <% if remote_control.enabled %>

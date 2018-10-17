@@ -1,10 +1,11 @@
 class RemoteControl < ActiveRecord::Base
   has_many :notes
 
-  default_scope { order("name") }
+  default_scope { order("priority") }
 
   validates :name, presence: true, uniqueness: true
   validates :gpio, presence: true, uniqueness: true
+  validates :priority, presence: true
   validate :gpio_validation
 
   VALID_GPIO = ["4","17","18","21","22","23","24","25"]
