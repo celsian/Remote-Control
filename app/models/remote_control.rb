@@ -8,7 +8,11 @@ class RemoteControl < ActiveRecord::Base
   validates :priority, presence: true
   validate :gpio_validation
 
-  VALID_GPIO = ["4","17","18","21","22","23","24","25"]
+  #GPIO for RPi 2b
+  #VALID_GPIO = ["4","17","18","21","22","23","24","25"]
+
+  #GPIO for RPi 3b
+  VALID_GPIO = ["4","17","27", "22", "5", "6", "13", "19", "26", "18", "23", "24", "25", "12", "16", "20", "21"]
 
   def gpio_validation
     unless VALID_GPIO.include?(gpio)
