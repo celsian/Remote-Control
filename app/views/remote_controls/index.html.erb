@@ -1,16 +1,18 @@
 <%# provide(:title, 'Welcome') %>
 <% if @remote_controls %>
   <div id="container" style="text-align: center;">
-    <table width="300px" cellpadding="20" align="center">
+    <table width="300px" align="center" margin="20px">
       <% @remote_controls.each_slice(2) do |batch| %>
           <tr>
             <% batch.each do |remote_control| %>
               <td width="150px" height="50px">
                 <% if remote_control.name == "Gate" %>
                     <%# Prevents the gate from prompting before opening %>
-                    <%= link_to remote_control.name, remote_control.enabled ? remote_control_open_path(remote_control) : "", class: remote_control.enabled ? "btn btn-success btn-lg btn-block" : "btn btn-default btn-lg btn-block disabled", remote: true %>
+                    <%= link_to remote_control.name, remote_control.enabled ? remote_control_open_path(remote_control) : "",
+                      class: remote_control.enabled ? "btn btn-success btn-lg btn-block" : "btn btn-default btn-lg disabled btn-block", remote: true %>
                 <% else %>
-                  <%= link_to remote_control.name, remote_control.enabled ? remote_control_open_path(remote_control) : "", data: { confirm: "Are you sure you want to open the #{remote_control.name}?" }, class: remote_control.enabled ? "btn btn-success btn-lg btn-block" : "btn btn-default btn-lg btn-block disabled", remote: true %>
+                  <%= link_to remote_control.name, remote_control.enabled ? remote_control_open_path(remote_control) : "", data: { confirm: "Are you sure you want to open the #{remote_control.name}?" },
+                    class: remote_control.enabled ? "btn btn-success btn-lg btn-block" : "btn btn-default btn-lg disabled btn-block", remote: true %>
                 <% end %>
               </td>
             <% end %>
