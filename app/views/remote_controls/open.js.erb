@@ -1,3 +1,7 @@
 <% flash.each do |type, message| %>
-  $("#flash_messages").html("<div class='alert <%= bootstrap_class_for(type) %> alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×</button><%= escape_javascript(message).html_safe %></div>");
+  <% if message.include? "The <b>Gate</b>" %>
+    $("#flash_messages").html("<div class='alert <%= bootstrap_class_for('info') %> alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×</button><%= escape_javascript(message).html_safe %></div>");
+  <% else %>
+    $("#flash_messages").html("<div class='alert <%= bootstrap_class_for(type) %> alert-dismissible' role='alert'><button class='close' data-dismiss='alert'>×</button><%= escape_javascript(message).html_safe %></div>");
+  <% end %>
 <% end %>

@@ -41,7 +41,7 @@ module ApplicationHelper
       when "alert"
         "alert-danger"
       when "notice"
-        "alert-success"
+        "alert-warning"
       when "info"
         "alert-info"
       else
