@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   sequence(:info) { |n| "The #{n} time the gate was opened." }
 
   factory :note do
