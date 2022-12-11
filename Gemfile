@@ -34,12 +34,12 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+# gem 'jbuilder', '~> 1.2'
 
 group :test, :development do
   gem 'capybara'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
   gem 'guard-rspec'
   gem 'pry'
 end
@@ -53,4 +53,5 @@ group :production do
   #For ruby gpio <--------------
   gem 'pi_piper', '~> 1.3.2' #This older version works, newer version does not actuate my pins.
   # gem 'pi_piper', '~> 2.0.0'
+  # gem 'rpi_gpio' #Possible replacement for pi_piper
 end
