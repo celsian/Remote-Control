@@ -6,8 +6,6 @@ jobs:
   build:
     name: CI
     runs-on: ubuntu-latest
-    env:
-      api-dir: ./Remote-Control
 
     services:
       postgres:
@@ -33,12 +31,10 @@ jobs:
         run: sudo apt-get -yqq install libpq-dev
 
       - name: Run bundle install
-        working-directory: ${{env.api-dir}}
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
       - name: Setup Database
-        working-directory: ${{env.api-dir}}
         env:
           RAILS_ENV: test
           PGHOST: localhost
@@ -46,7 +42,6 @@ jobs:
         run: bin/rails db:create db:schema:load
 
       - name: Build and test with rspec
-        working-directory: ${{env.api-dir}}
         env:
           RAILS_ENV: test
           PGHOST: localhost
