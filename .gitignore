@@ -20,7 +20,6 @@
 
 .DS_Store
 
-config/database.yml
 public/assets/
 
 app/views/layouts/application.html.erb.bak
