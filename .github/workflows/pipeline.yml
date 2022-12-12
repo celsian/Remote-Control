@@ -11,9 +11,8 @@ jobs:
       postgres:
         image: postgres
         ports:
-          - '5432'
+          - 5432:5432
         env:
-          POSTGRES_DB: postgres
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -29,17 +28,23 @@ jobs:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
       - name: Install Dependencies
-        run: |
-          sudo apt install -yqq libpq-dev
-          gem install bundler
+        run: gem install bundler
 
       - name: Install Gems
         run: bundle install
 
+      - name: Prepare Database
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          RAILS_ENV: test
+        run: bundle exec rails db:prepare
+
       - name: Test with RSpec
         env:
-          RAILS_ENV: "test"
-          DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
-        run: |
-          bundle exec rails db:setup
-          bundle exec rspec spec
+          PGHOST: localhost
+          PGUSER: postgres
+          PGPASSWORD: postgres
+          RAILS_ENV: test
+        run: bundle exec rspec spec
