@@ -39,7 +39,7 @@ jobs:
       - name: Test with RSpec
         env:
           RAILS_ENV: "test"
-          DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres_test"
+          DATABASE_URL: "postgres://postgres:postgres@localhost:5432/postgres"
         run: |
           bundle exec rails db:setup
           bundle exec rspec spec
