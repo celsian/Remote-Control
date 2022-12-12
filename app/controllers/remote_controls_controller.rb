@@ -79,7 +79,7 @@ class RemoteControlsController < ApplicationController
   def update
     @remote_control = RemoteControl.find(params[:id])
 
-    if @remote_control.update_attributes remote_control_params
+    if @remote_control.update(remote_control_params)
       redirect_to admin_access_control_path, flash: { success: "GPIO entry updated." }
     else
       flash[:error] = "Error: #{@remote_control.error_messages}"
