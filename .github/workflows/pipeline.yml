@@ -36,10 +36,10 @@ jobs:
       - name: Install Gems
         run: bundle install
 
-      - name: Preapre Database
-        run: bundle exec rails db:prepare
-
-      - name: Run Tests
+      - name: Test with RSpec
         env:
-          DATABASE_URL: postgresql://postgres:@localhost:5432/postgres
-        run: bundle exec rails test
+          RAILS_ENV: "test"
+          DATABASE_URL: "postgres://postgres@localhost:5432/postgres_test"
+        run: |
+          bundle exec rails db:setup
+          bundle exec rspec spec
