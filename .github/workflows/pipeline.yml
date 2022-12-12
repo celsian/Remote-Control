@@ -1,10 +1,10 @@
-name: CI RSpec Tests
+name: Remote Control Pipeline
 
 on: [push, pull_request]
 
 jobs:
   build:
-    name: CI
+    name: Test Suite
     runs-on: ubuntu-latest
 
     services:
