@@ -9,7 +9,7 @@ RSpec.describe RemoteControl, :type => :model do
       gate = FactoryBot.create(:remote_control, gpio: "23", name: "Gate")
       garage = FactoryBot.create(:remote_control, gpio: "22", name: "Garage")
 
-      expect(remote_controls.index(gate)).to be > remote_controls.index(garage)
+      expect(remote_controls.index(gate)).to be < remote_controls.index(garage)
     end
   end
 
