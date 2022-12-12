@@ -15,7 +15,7 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'rubygems'
-require 'factory_bot_rails'
+require 'factory_bot'
 require_relative 'support/controller_helpers'
 require 'devise'
 
