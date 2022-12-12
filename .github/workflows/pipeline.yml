@@ -27,21 +27,19 @@ jobs:
         with:
           ruby-version: '3.1.2' # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
-      # - run: bundle exec rake
 
-      # - name: Install PostgreSQL
-      #   run: sudo apt-get -yqq install libpq-dev
+      - name: Install Dependencies
+        run: |
+          sudo apt install -yqq libpq-dev
+          gem install bundler
 
-      # - name: Setup Database
-      #   env:
-      #     RAILS_ENV: test
-      #     PGHOST: localhost
-      #     PGUSER: postgres
-      #   run: bin/rails db:create db:schema:load
+      - name: Install Gems
+        run: bundle install
 
-      - name: Build and test with rspec
+      - name: Preapre Database
+        run: bundle exec rails db:prepare
+
+      - name: Run Tests
         env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: postgres
-        run: bundle exec rspec spec
+          DATABASE_URL: postgresql://postgres:@localhost:5432/postgres
+        run: bundle exec rails test
