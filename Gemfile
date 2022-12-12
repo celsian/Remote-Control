@@ -39,7 +39,8 @@ gem 'jquery-rails'
 group :test, :development do
   gem 'capybara'
   gem 'rspec-rails'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'guard-rspec'
   gem 'pry'
 end
