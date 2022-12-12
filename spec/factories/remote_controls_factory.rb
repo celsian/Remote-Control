@@ -5,6 +5,6 @@ FactoryBot.define do
   end
 
   factory :remote_control_disabled, parent: :remote_control do
-    enabled false
+    enabled { false }
   end
 end
