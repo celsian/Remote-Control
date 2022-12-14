@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2018_10_17_150249) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_13_235708) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "api_keys", force: :cascade do |t|
+    t.text "token_ciphertext"
+    t.bigint "user_id"
+    t.boolean "is_valid", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "token_bidx"
+    t.index ["token_bidx"], name: "index_api_keys_on_token_bidx", unique: true
+    t.index ["user_id"], name: "index_api_keys_on_user_id"
+  end
 
   create_table "notes", force: :cascade do |t|
     t.string "info"

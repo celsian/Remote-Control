@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   default_scope { order("email") }
 
   has_many :notes
+  has_one :api_key
 
   PROTECTED_USERS = ['celsian@gmail.com']
 
