@@ -1,6 +1,9 @@
 class Api::V1::RemoteControlsController < Api::V1::BaseController
   def open
-    remote_control = RemoteControl.find(params[:id])
+    remote_control = RemoteControl.find_by(id: params[:id])
+
+    render json: { id: params[:id], name: "", "success": false, "message": "ID does not exist." } and return unless remote_control
+
     json = {id: RemoteControl.first.id, name: RemoteControl.first.name}
 
     if remote_control.open(@user)
