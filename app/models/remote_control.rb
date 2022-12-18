@@ -14,6 +14,17 @@ class RemoteControl < ActiveRecord::Base
   #GPIO for RPi 3b
   VALID_GPIO = ["4","17","27", "22", "5", "6", "13", "19", "26", "18", "23", "24", "25", "12", "16", "20", "21"]
 
+  def open(current_user)
+    if enabled
+      GpioOpenWorker.perform_async(id)
+
+      note = Note.add(current_user, self)
+      return true
+    end
+
+    false
+  end
+
   def gpio_validation
     unless VALID_GPIO.include?(gpio)
       errors.add(:base, "Gpio value can't be outside the valid range: (#{VALID_GPIO.join(', ')})")

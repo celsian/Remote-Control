@@ -10,18 +10,13 @@ class RemoteControlsController < ApplicationController
   def open
     remote_control = RemoteControl.find(params[:id])
 
-    if remote_control.enabled
-      GpioOpenWorker.perform_async(remote_control.id)
-
-      note = Note.add(current_user, remote_control)
-
-      flash.now[:success] = "The <b>#{remote_control.name}</b> was triggered at #{note.updated_at.strftime("%I:%M:%S %p on %m-%d-%Y")}."
+    if remote_control.open(current_user)
+      flash.now[:success] = "The <b>#{remote_control.name}</b> was triggered at #{Time.now.strftime("%I:%M:%S %p on %m-%d-%Y")}."
 
       respond_to do |format|
-        format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered at #{note.updated_at.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
+        format.html { redirect_to remote_controls_path, flash: { success: "The <b>#{remote_control.name}</b> was triggered at #{Time.now.strftime("%I:%M:%S %p on %m-%d-%Y")}." } }
         format.js
       end
-
     else
       flash.now[:error] = "The <b>#{remote_control.name}</b> is currently disabled."
 
