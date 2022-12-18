@@ -33,14 +33,14 @@
 <div>
 <h2>API Key:</h2>
 <% if current_user.api_key %>
-  <%= current_user.api_key.token %> <%= link_to api_key_path(current_user.api_key), method: :patch, class: "btn btn-primary" do %>
+  <%= current_user.api_key.token %> <%= link_to user_api_key_path(current_user.api_key), method: :patch, class: "btn btn-primary" do %>
     <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
   <% end %>
-  <%= link_to api_key_path(current_user.api_key), method: :delete, class: "btn btn-danger" do %>
+  <%= link_to user_api_key_path(current_user.api_key), method: :delete, class: "btn btn-danger" do %>
     <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
   <% end %>
 <% else %>
-  No key, create one? <%= link_to api_keys_path, method: :create, class: "btn btn-primary" do %>
+  No key, create one? <%= link_to user_api_keys_path, method: :create, class: "btn btn-primary" do %>
                         <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                       <% end %>
 <% end %>
