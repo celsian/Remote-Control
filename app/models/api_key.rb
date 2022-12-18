@@ -15,11 +15,11 @@ class ApiKey < ApplicationRecord
 
   private
 
-    def set_token
-      self.token = secure_string
-    end
+  def set_token
+    self.token = secure_string
+  end
 
-    def secure_string
-      SecureRandom.hex
-    end
+  def secure_string
+    SecureRandom.hex
+  end
 end
