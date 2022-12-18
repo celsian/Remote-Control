@@ -33,10 +33,10 @@
 <div>
 <h2>API Key:</h2>
 <% if current_user.api_key %>
-  <%= current_user.api_key.token %> <%= link_to user_api_key_path(current_user.api_key), method: :patch, class: "btn btn-primary" do %>
+  <%= current_user.api_key.token %> <%= link_to user_api_key_path(current_user.api_key.id), method: :patch, class: "btn btn-primary" do %>
     <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
   <% end %>
-  <%= link_to user_api_key_path(current_user.api_key), method: :delete, class: "btn btn-danger" do %>
+  <%= link_to user_api_key_path(current_user.api_key.id), method: :delete, class: "btn btn-danger" do %>
     <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
   <% end %>
 <% else %>
