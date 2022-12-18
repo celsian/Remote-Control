@@ -33,4 +33,6 @@ Rc::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  Lockbox.master_key = "0000000000000000000000000000000000000000000000000000000000000000"
 end
