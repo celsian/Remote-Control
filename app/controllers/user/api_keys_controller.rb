@@ -1,4 +1,4 @@
-class ApiKeysController < ApplicationController
+class User::ApiKeysController < ApplicationController
   before_action :authenticate_user!
   before_action :require_controller
 
