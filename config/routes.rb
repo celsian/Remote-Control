@@ -18,9 +18,17 @@ Rc::Application.routes.draw do
   get "/admin/access_control/disable/:id", to: "admin#access_control_disable", as: "admin_access_control_disable"
   get "/admin/access_control/enable/:id", to: "admin#access_control_enable", as: "admin_access_control_enable"
 
-  # namespace :user do
+  namespace :user do
     resources :api_keys, only: [:create, :update, :destroy]
-  # end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      defaults format: :json do
+        get "/remote_controls/:id/open", to: "remote_controls#open", as: "remote_control_open"
+      end
+    end
+  end
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
