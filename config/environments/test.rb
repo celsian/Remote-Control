@@ -35,4 +35,6 @@ Rc::Application.configure do
   config.active_support.deprecation = :stderr
 
   Lockbox.master_key = "0000000000000000000000000000000000000000000000000000000000000000"
+
+  Sidekiq.logger.level = Logger::WARN
 end
