@@ -6,7 +6,7 @@ class Api::V1::RemoteControlsController < Api::V1::BaseController
 
     json = {id: RemoteControl.first.id, name: RemoteControl.first.name}
 
-    if remote_control.open(@user)
+    if remote_control.open(@user, {api: true})
       json.merge!({
         "success":true,
         "message":"The #{remote_control.name} was triggered at #{Time.now.strftime("%I:%M:%S %p on %m-%d-%Y")}."
