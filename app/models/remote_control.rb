@@ -14,11 +14,11 @@ class RemoteControl < ActiveRecord::Base
   #GPIO for RPi 3b
   VALID_GPIO = ["4","17","27", "22", "5", "6", "13", "19", "26", "18", "23", "24", "25", "12", "16", "20", "21"]
 
-  def open(current_user)
+  def open(current_user, opts = {})
     if enabled
       GpioOpenWorker.perform_async(id)
 
-      note = Note.add(current_user, self)
+      note = Note.add(current_user, self, opts)
       return true
     end
 
