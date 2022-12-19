@@ -11,7 +11,7 @@ class Api::V1::BaseController < ApplicationController
     authenticate_with_http_token do |token, options|
       @user ||= ApiKey.find_by(token: token)&.user
 
-      if @user.controller
+      if @user&.controller
         return @user
       else
         return nil
