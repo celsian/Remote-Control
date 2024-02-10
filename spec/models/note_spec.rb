@@ -24,16 +24,6 @@ RSpec.describe Note, type: :model do
     end
   end
 
-  describe "head_add" do
-    let(:remote_control) { create(:remote_control) }
-
-    it "creates a head level note" do
-      note = Note.head_add(user, remote_control)
-
-      expect(Note.last).to eq(note)
-    end
-  end
-
   describe "check_count" do
     let!(:notes) { create_list(:note, 505) }
 

@@ -27,11 +27,6 @@ class Note < ActiveRecord::Base
     return Note.create(info: info, remote_control: remote_control, user: current_user)
   end
 
-  def self.head_add(current_user, remote_control)
-    Note.check_count
-    return Note.create(info: "#{current_user.email} triggered the #{remote_control.name} for head level.", remote_control: remote_control, user: current_user)
-  end
-
   def self.check_count
     if Note.count > (NOTE_COUNT)
       overflow = Note.all.offset((NOTE_COUNT))
