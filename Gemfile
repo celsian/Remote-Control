@@ -55,5 +55,5 @@ end
 group :production do
   #For ruby gpio <--------------
   # gem 'pi_piper', '~> 1.3.2' #This older version works, newer version does not actuate my pins.
-  # gem 'pigpio' # Replaces pi_piper which does not work on Ruby 3/Rails 7
+  gem 'pigpio' # Replaces pi_piper which does not work on Ruby 3/Rails 7
 end
