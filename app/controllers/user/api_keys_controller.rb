@@ -11,8 +11,8 @@ class User::ApiKeysController < ApplicationController
   def update
     ApiKey.find_by(user: current_user).update_token
 
-    render json: {token: ApiKey.find_by(user: current_user).token}
-    # redirect_to edit_user_registration_path, flash: { success: "API Key regenerated." }
+    # render json: {token: ApiKey.find_by(user: current_user).token}
+    redirect_to edit_user_registration_path, flash: { success: "API Key regenerated." }
   end
 
   def destroy
