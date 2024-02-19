@@ -31,17 +31,25 @@
 
 
 <div>
-<h2>API Key:</h2>
-<% if current_user.api_key %>
-  <%= current_user.api_key.token %> <%= link_to user_api_key_path(current_user.api_key.id), method: :patch, class: "btn btn-primary" do %>
-    <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-  <% end %>
-  <%= link_to user_api_key_path(current_user.api_key.id), method: :delete, class: "btn btn-danger" do %>
-    <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
-  <% end %>
-<% else %>
-  No key, create one? <%= link_to user_api_keys_path, method: :create, class: "btn btn-primary" do %>
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                      <% end %>
-<% end %>
+<h2>API Key:</h2> <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    Click to show
+  </button>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <% if current_user.api_key %>
+      <%= current_user.api_key.token %>
+      <%= link_to user_api_key_path(current_user.api_key.id), method: :patch, class: "btn btn-primary" do %>
+        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+      <% end %>
+      <%= link_to user_api_key_path(current_user.api_key.id), method: :delete, class: "btn btn-danger" do %>
+        <span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>
+      <% end %>
+    <% else %>
+      No key, create one? <%= link_to user_api_keys_path, method: :create, class: "btn btn-primary" do %>
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
 </div>
