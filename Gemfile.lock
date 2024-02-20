@@ -68,13 +68,9 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
-    argon2-kdf (0.2.0)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     bcrypt (3.1.18)
-    blind_index (2.4.0)
-      activesupport (>= 6.1)
-      argon2-kdf (>= 0.1.1)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -314,7 +310,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  blind_index
   bootstrap-sass (~> 3.3.6)
   capybara
   chartkick

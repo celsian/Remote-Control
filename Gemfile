@@ -8,7 +8,7 @@ gem "pg"
 
 gem 'devise'
 gem "lockbox"
-gem "blind_index"
+# gem "blind_index"
 
 #For statistical analysis
 gem "chartkick"
