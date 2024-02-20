@@ -27,3 +27,5 @@ app/views/layouts/application.html.erb.bak
 dump.rdb
 
 /config/master.key
+/config/credentials.yml.enc
+
