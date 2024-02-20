@@ -4,7 +4,7 @@ class Api::V1::RemoteControlsController < Api::V1::BaseController
 
     render json: { id: params[:id], name: "", "success": false, "message": "ID does not exist." } and return unless remote_control
 
-    json = {id: RemoteControl.first.id, name: RemoteControl.first.name}
+    json = {id: remote_control.id, name: remote_control.name}
 
     if remote_control.open(@user, {api: true})
       json.merge!({
