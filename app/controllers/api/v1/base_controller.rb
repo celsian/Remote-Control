@@ -9,7 +9,7 @@ class Api::V1::BaseController < ApplicationController
 
   def authenticate_user_with_token
     authenticate_with_http_token do |token, options|
-      @user ||= ApiKey.find_by(token: token)&.user
+      @user ||= ApiKey.find_token(token)&.user
 
       if @user&.controller
         return @user
