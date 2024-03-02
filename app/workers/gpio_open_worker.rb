@@ -1,21 +1,26 @@
 class GpioOpenWorker
-  include Sidekiq::Worker
+  include Sidekiq::Job
   require 'rubygems'
 
   if Rails.env.production?
-    require 'pi_piper'
+    include Pigpio::Constant
   end
 
   def perform(remote_control_id)
     remote_control = RemoteControl.find(remote_control_id)
 
     if Rails.env.production?
-      pin = PiPiper::Pin.new(:pin => remote_control.gpio, :direction => :out)
-      sleep 1.0
-      pin.on
+      pi = Pigpio.new
 
-      File.open("/sys/class/gpio/unexport","w") { |f| f.write(pin.pin) }
+      gpio = pi.gpio(remote_control.gpio.to_i)
+      gpio.mode = PI_OUTPUT
+      gpio.pud = PI_PUD_OFF
+
+      gpio.write 0
+      sleep 1.0
+      gpio.write 1
+
+      pi.stop
     end
   end
-
 end

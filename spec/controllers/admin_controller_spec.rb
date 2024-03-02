@@ -83,13 +83,13 @@ RSpec.describe AdminController, type: :controller do
     let(:params) { { id: remote_control.id } }
 
     it "enables the specified remote_control" do
-      get :access_control_enable, params
+      get :access_control_enable, params: params
 
       expect((remote_control.reload).enabled).to be(true)
     end
 
     it "redirects to admin_access_control_path" do
-      get :access_control_enable, params
+      get :access_control_enable, params: params
       expect(response).to redirect_to(admin_access_control_path)
     end
   end
@@ -99,13 +99,13 @@ RSpec.describe AdminController, type: :controller do
     let(:params) { { id: remote_control.id } }
 
     it "disabled the specified remote_control" do
-      get :access_control_disable, params
+      get :access_control_disable, params: params
 
       expect((remote_control.reload).enabled).to be(false)
     end
 
     it "redirects to admin_access_control_path" do
-      get :access_control_disable, params
+      get :access_control_disable, params: params
 
       expect(response).to redirect_to(admin_access_control_path)
     end
@@ -131,7 +131,7 @@ RSpec.describe AdminController, type: :controller do
       let(:params) { { q: search_string } }
 
       it "lists matching users" do
-        get :user_editor, params
+        get :user_editor, params: params
 
         expect(assigns(:users)).to eq(User.search(search_string))
       end
@@ -178,13 +178,13 @@ RSpec.describe AdminController, type: :controller do
     let(:params) { { id: new_user.id, q: "@" } }
 
     it "redirects to admin_user_editor_path" do
-      get :add_admin, params
+      get :add_admin, params: params
 
       expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
     end
 
     it "redirects to admin_user_editor_path" do
-      get :add_admin, params
+      get :add_admin, params: params
 
       expect((new_user.reload).admin).to be(true)
     end
@@ -195,13 +195,13 @@ RSpec.describe AdminController, type: :controller do
     let(:params) { { id: admin_user.id, q: "@" } }
 
     it "redirects to admin_user_editor_path" do
-      get :remove_admin, params
+      get :remove_admin, params: params
 
       expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
     end
 
     it "redirects to admin_user_editor_path" do
-      get :remove_admin, params
+      get :remove_admin, params: params
 
       expect((admin_user.reload).admin).to be(false)
     end
@@ -212,13 +212,13 @@ RSpec.describe AdminController, type: :controller do
     let(:params) { { id: new_user.id, q: "@" } }
 
     it "redirects to admin_user_editor_path" do
-      get :add_controller, params
+      get :add_controller, params: params
 
       expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
     end
 
     it "redirects to admin_user_editor_path" do
-      get :add_controller, params
+      get :add_controller, params: params
 
       expect((new_user.reload).controller).to be(true)
     end
@@ -229,13 +229,13 @@ RSpec.describe AdminController, type: :controller do
     let(:params) { { id: controller_user.id, q: "@" } }
 
     it "redirects to admin_user_editor_path" do
-      get :remove_controller, params
+      get :remove_controller, params: params
 
       expect(response).to redirect_to(admin_user_editor_path(q: params[:q]))
     end
 
     it "redirects to admin_user_editor_path" do
-      get :remove_controller, params
+      get :remove_controller, params: params
 
       expect((controller_user.reload).controller).to be(false)
     end

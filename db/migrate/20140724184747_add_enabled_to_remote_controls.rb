@@ -1,4 +1,4 @@
-class AddEnabledToRemoteControls < ActiveRecord::Migration
+class AddEnabledToRemoteControls < ActiveRecord::Migration[7.0]
   def self.up
     add_column :remote_controls, :enabled, :boolean, :default => true
   end

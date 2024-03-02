@@ -20,32 +20,12 @@
 
 .DS_Store
 
-config/database.yml
+public/assets/
 
 app/views/layouts/application.html.erb.bak
 
-public/assets/application-6e29685cca484eaf04b41372ced3a8b0.css
-
-public/assets/application-6e29685cca484eaf04b41372ced3a8b0.css.gz
-
-public/assets/application-afb322230443417b558927e95822f563.js
-
-public/assets/application-afb322230443417b558927e95822f563.js.gz
-
-public/assets/manifest-dfa1b104d332ef1e0d265b96546d0816.json
-
-public/assets/apple-touch-icon-114x114-precomposed.png-25c768cac66c65eb836589eaf1583e2f.png
-
-public/assets/application-e83ce977083e7f5f5538296fe125770d.css
-
-public/assets/application-e83ce977083e7f5f5538296fe125770d.css.gz
-
-public/assets/apple-touch-icon-144x144-precomposed-305098ee25b81f40ed9ee851e2bde5b7.png
-
-public/assets/apple-touch-icon-72x72-precomposed-11bad6ec7e6bf43709480fb2cf0684a0.png
-
-public/assets/apple-touch-icon-precomposed-9357077566e6cae90ad530c33baacb7f.png
-
-public/assets/favicon-ef0bdc1a03adcf5a7e9701f91eef36e3.ico
-
 dump.rdb
+
+/config/master.key
+/config/credentials.yml.enc
+

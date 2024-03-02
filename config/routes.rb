@@ -5,7 +5,7 @@ Rc::Application.routes.draw do
   resources :remote_controls
   get "/remote_controls/:id/open", to: "remote_controls#open", as: "remote_control_open"
   get "/remote_controls/:id/head_open", to: "remote_controls#head_open", as: "remote_control_head_open"
-  
+
   resources :admin, only: [:index]
   get "/admin/notes", to: "admin#notes", as: "admin_notes"
   get "/admin/user_editor", to: "admin#user_editor", as: "admin_user_editor"
@@ -17,7 +17,19 @@ Rc::Application.routes.draw do
   get "/admin/access_control", to: "admin#access_control", as: "admin_access_control"
   get "/admin/access_control/disable/:id", to: "admin#access_control_disable", as: "admin_access_control_disable"
   get "/admin/access_control/enable/:id", to: "admin#access_control_enable", as: "admin_access_control_enable"
-  
+
+  namespace :user do
+    resources :api_keys, only: [:create, :update, :destroy]
+  end
+
+  namespace :api do
+    namespace :v1 do
+      defaults format: :json do
+        get "/remote_controls/:id/open", to: "remote_controls#open", as: "remote_control_open"
+      end
+    end
+  end
+
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/admin/sidekiq', as: "sidekiq"

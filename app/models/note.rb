@@ -6,7 +6,7 @@ class Note < ActiveRecord::Base
 
   default_scope { order("updated_at DESC") }
 
-  def self.add(current_user, remote_control)
+  def self.add(current_user, remote_control, opts = {})
     Note.check_count
 
     recent_notes = Note.where("updated_at >= ?", 30.seconds.ago)
@@ -19,12 +19,12 @@ class Note < ActiveRecord::Base
       end
     end
 
-    return Note.create(info: "#{current_user.email} triggered the #{remote_control.name}", remote_control: remote_control, user: current_user)
-  end
+    info = "#{current_user.email} triggered the #{remote_control.name}"
+    if opts[:api]
+      info += " via API Key."
+    end
 
-  def self.head_add(current_user, remote_control)
-    Note.check_count
-    return Note.create(info: "#{current_user.email} triggered the #{remote_control.name} for head level.", remote_control: remote_control, user: current_user)
+    return Note.create(info: info, remote_control: remote_control, user: current_user)
   end
 
   def self.check_count

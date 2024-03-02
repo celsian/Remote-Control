@@ -7,6 +7,8 @@ gem 'thin'
 gem "pg"
 
 gem 'devise'
+gem "lockbox"
+# gem "blind_index"
 
 #For statistical analysis
 gem "chartkick"
@@ -34,23 +36,24 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+# gem 'jbuilder', '~> 1.2'
 
 group :test, :development do
   gem 'capybara'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
+  gem 'rails-controller-testing'
   gem 'guard-rspec'
   gem 'pry'
 end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
+  # gem 'sdoc', require: false
 end
 
 group :production do
-  #For ruby gpio <--------------
-  gem 'pi_piper', '~> 1.3.2' #This older version works, newer version does not actuate my pins.
-  # gem 'pi_piper', '~> 2.0.0'
+  # For ruby gpio <--------------
+  # Uncomment this gem if you're this repo is running on your Raspberry Pi.
+  # gem 'pigpio' # Replaces pi_piper which does not work on Ruby 3/Rails 7
 end
