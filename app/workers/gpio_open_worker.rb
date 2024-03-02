@@ -16,9 +16,9 @@ class GpioOpenWorker
       gpio.mode = PI_OUTPUT
       gpio.pud = PI_PUD_OFF
 
-      gpio.write 1
-      sleep 1.0
       gpio.write 0
+      sleep 1.0
+      gpio.write 1
 
       pi.stop
     end
